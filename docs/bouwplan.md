@@ -1,0 +1,276 @@
+# Bouwplan gladvisor.nl
+
+Bron van waarheid voor de bouw van de nieuwe website van Gladvisor B.V. (Glenn Snel, freelance SEO-specialist). Afgeleid van het plan-document van 26 september 2026.
+
+## Context
+
+- Migratie van WordPress naar Astro op Vercel, content in markdown in de repo, workflow via Claude Code.
+- Positionering: SEO-specialist als hoofdterm; CRO en AI-zichtbaarheid als tweede lijn. Strategie en uitvoering in één hand, gestuurd op omzet en relevant verkeer.
+- Doelgroep: HR-managers en hirers (interim of freelance rol), ondernemers zonder eigen SEO'er, marketing- en e-commercemanagers.
+- Werkgebied: binnen 100 km of een uur reistijd van Nieuwerkerk aan den IJssel, 50/50 op locatie en remote.
+- Vaste afspraken: geen tarieven op de site; Online Advertising Europe nergens noemen; KPN-logo staat uit tot het contract het toelaat; Nederlandse teksten, geen Title Case in koppen, spaarzaam met gedachtestreepjes, niet overdrijven.
+
+## Sitestructuur (topical map)
+
+Regel: commerciële subonderwerpen onder de pijler, informationele in /blog/ met een vaste link omhoog naar de pijler.
+
+| URL | Laag | Focusterm | Launch |
+| --- | --- | --- | --- |
+| / | home | – | ja |
+| /seo/ | pijler | seo specialist | ja |
+| /seo/website-migratie/ | sub | seo migratie | ja |
+| /seo/seo-audit/ | sub | seo audit, seo analyse | ja |
+| /seo/seo-strategie/ | sub | seo strategie | later |
+| /cro/ | pijler | conversie optimalisatie | ja |
+| /cro/cro-analyse/ | sub | cro analyse | later |
+| /ai-zichtbaarheid/ | pijler | generative engine optimization, geo | ja |
+| /blog/ | overzicht | – | ja |
+| /blog/ai-overviews/ | blog | ai overviews | ja |
+| /blog/wat-is-generative-engine-optimization/ | blog | generative engine optimization | ja |
+| /blog/ai-seo/ | blog | ai seo | later |
+| /blog/ab-testen-kleine-webshops/ | blog | a/b testen | later |
+| /cases/ en /cases/<naam>/ | bewijs | – | ja |
+| /over/, /contact/, /privacy/ | vast | – | ja |
+
+Cases bij launch: fortune-coffee, horloge-nl, rcn. Logostrip: MediaMarkt, Fingerspitz, Alpine, Rinkel, Bamigo.
+
+Instapproducten (secundaire conversie): seo-quickscan (op /seo/), page-review (op /cro/), ai-check (op /ai-zichtbaarheid/).
+
+## Bouwvoorbereiding
+
+### Stap 1: contentmodel
+
+Collecties in src/content.config.ts met zod. De build moet falen bij een te lange title, een ontbrekend verplicht veld of een verwijzing naar iets dat niet bestaat (gebruik reference()).
+
+| Collectie | Map | Inhoud |
+| --- | --- | --- |
+| services | src/content/services/ | pijlers en subpagina's (seo/index.md, seo/website-migratie.md, ...) |
+| cases | src/content/cases/ | klantcases |
+| blog | src/content/blog/ | informationele artikelen |
+| pages | src/content/pages/ | home, over, contact, privacy |
+| site | src/data/site.yaml | gedeelde gegevens |
+
+Gedeelde SEO-velden (alle collecties):
+
+- title: verplicht, max. 60 tekens
+- description: verplicht, max. 155 tekens
+- noindex: standaard false
+- ogImage: optioneel
+- schema: lijst, bijv. Service, FAQPage, Person
+- draft: standaard false; drafts worden niet gebouwd
+
+services:
+
+- h1, focusKeyword, secondaryKeywords
+- type: 'pijler' | 'sub'
+- pillar: reference naar services (verplicht bij sub)
+- hero: statement, audience, ctaPrimary { label, href }
+- proof: lijst van reference naar cases en/of { label, value }
+- softConversion: { label, description, formType: 'seo-quickscan' | 'page-review' | 'ai-check' }
+- faq: lijst van { q, a } (voedt FAQPage-schema)
+- related: lijst van reference naar services of blog
+
+cases:
+
+- client, sector, role, period
+- services: lijst van reference naar pijlers
+- result: { metric, value, context }
+- quote: { text, name, role } (optioneel)
+- logo, featured, order
+
+blog:
+
+- h1, focusKeyword
+- pillar: verplichte reference naar een pijler
+- publishDate, updatedDate, author (standaard 'Glenn Snel')
+
+pages:
+
+- h1; secties vrij in markdown. Home krijgt een eigen template dat services, cases en logo's uit de andere collecties haalt.
+
+site.yaml:
+
+- logos: { name, file, visible } (KPN: visible false)
+- contact: mail, telefoon, LinkedIn
+- werkgebied: tekst zoals onder Context
+- entryOffers: seo-quickscan, page-review, ai-check, elk met titel en korte omschrijving
+
+Bewust buiten het contentmodel: redirects (vercel.json) en tarieven (worden niet getoond).
+
+### Stap 2: design tokens en basiscomponenten
+
+Huisstijl: crème en goud, Arial voor alles, structuur uit hairlines, witruimte en gouden nummers. Geen kaarten met slagschaduw, geen gekleurde balken over de volle breedte. De site moet voelen als de Gladvisor-decks, maar leesbaar op mobiel.
+
+Kleurtokens (src/styles/tokens.css, op :root):
+
+| Token | Waarde | Gebruik |
+| --- | --- | --- |
+| --bg | #FAF6EE | achtergrond overal |
+| --bg-soft | #F4EFE4 | proof bar, FAQ-blok, formulier, instapproduct |
+| --line | #E5E0D5 | hairlines, tabelranden |
+| --line-strong | #B8AE98 | invoervelden, focusrand |
+| --ink | #111111 | koppen, knoppen, links |
+| --text | #1F1F1F | lopende tekst |
+| --muted | #6E6E6E | eyebrows, subteksten |
+| --muted-warm | #8C8474 | metadata |
+| --gold | #C9A227 | nummers, accentstreepjes, grote cijfers |
+| --gold-logo | #C9A050 | logo-vierkantje |
+| --gold-ghost | #EBE2CC | ghost-cijfers achter secties |
+| --positive | #3E8E5E | alleen in cases/tabellen |
+| --attention | #D9952B | alleen in cases/tabellen |
+| --risk | #C0504D | alleen in cases/tabellen |
+
+Contrast: goud nooit voor kleine lopende tekst of links. Links en knoptekst in --ink met gouden onderstreping of rand.
+
+Typografie:
+
+- font-family: Arial, Helvetica, sans-serif; geen webfonts
+- Desktop (mobiel ca. 80%): H1 44px bold, H2 28px bold, H3 18px bold, lead 20px, body 17px regelhoogte 1.6, klein 14px
+- Eyebrow: 12px, hoofdletters, letter-spacing 0.2em, --muted, bijv. 'DIENST · SEO'
+- Lopende tekst max-width 680px
+
+Layout:
+
+- Contentbreedte max. 1120px; zijmarge 24px mobiel, 48px desktop
+- Spacing in stappen van 8px (8, 16, 24, 32, 48, 64, 96); secties 96px uit elkaar op desktop, 64px op mobiel
+- Elke sectie opent met eyebrow, H2 en hairline
+
+Basiscomponenten:
+
+| Component | Opbouw |
+| --- | --- |
+| Header | goud vierkantje + 'Gladvisor' bold links; navigatie rechts (SEO, CRO, AI-zichtbaarheid, Cases, Over); knop 'Kennismaken' |
+| Hero | eyebrow, H1, lead, kort goud streepje, primaire CTA + tekstlink naar instapproduct |
+| ProofBar | --bg-soft vlak, 3 cijfers groot in goud met label eronder, logostrip in grijs |
+| SectionHeader | eyebrow, H2, hairline over de contentbreedte |
+| NumberedRow | hairline, goud nummer 01/02/03, titel bold, omschrijving --muted; mobiel gestapeld |
+| SectionDivider | groot ghost-cijfer in --gold-ghost achter de H2 (alleen pijlers en home) |
+| CaseCard | hairline boven, klant + sector als eyebrow, resultaat groot in goud, één zin, link; geen schaduw |
+| Table | koprij bold, hairlines, geen gekleurde vlakken, horizontaal scrollen op mobiel |
+| Faq | details/summary, hairline tussen vragen, plusteken in goud |
+| EntryOffer | --bg-soft vlak, titel, twee regels uitleg, knop; formType uit het contentmodel |
+| Button | primair: --ink vlak met crème tekst; secundair: rand --ink; hover: gouden onderrand |
+| Footer | hairline, logo, contact, werkgebied, KvK, links; klein en --muted |
+
+Geen dark mode in de eerste versie. Geen stockfoto's.
+
+### Stap 3: mappenstructuur, redirects en SEO-basis
+
+```
+gladvisor-site/
+├── astro.config.mjs        site: https://gladvisor.nl, trailingSlash: 'always', sitemap
+├── vercel.json             redirects en trailingSlash: true
+├── public/
+│   ├── robots.txt
+│   ├── favicon.svg         goud vierkantje
+│   ├── og-default.png
+│   └── logos/
+├── src/
+│   ├── content.config.ts
+│   ├── content/
+│   │   ├── services/
+│   │   ├── cases/
+│   │   ├── blog/
+│   │   └── pages/
+│   ├── data/site.yaml
+│   ├── styles/tokens.css
+│   ├── components/
+│   ├── layouts/            Base, Service, Case, Post
+│   └── pages/              routes + 404.astro
+├── docs/bouwplan.md
+└── CLAUDE.md
+```
+
+URL-conventie: kleine letters, koppeltekens, altijd afsluitende slash.
+
+Redirects (vercel.json, permanent: true):
+
+| Van | Naar |
+| --- | --- |
+| /wat/seo/ | /seo/ |
+| /wat/cro/ | /cro/ |
+| /wat/ | /seo/ |
+| /wat/online-marketing/ | /seo/ |
+| /wat/e-commerce/ | /cro/ |
+| /portfolio/ | /cases/ |
+| /waarom/ | /over/ |
+| /hoe/ | /over/ |
+| /cookieverklaring/ | /privacy/ |
+| /feed/ | /blog/ |
+
+Oude WordPress-pagina's /hello-world/, /author/glenn/ en /category/uncategorized/ worden niet gebouwd en geven een 404.
+
+SEO-basis in de Base-layout:
+
+- title, description, canonical (eigen URL met slash), Open Graph, noindex uit frontmatter
+- @astrojs/sitemap, zonder noindex-pagina's, /stijlgids/ en 404
+- robots.txt: alles toegestaan, ook AI-zoekcrawlers (o.a. OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot) en trainingscrawlers (o.a. GPTBot, ClaudeBot, Google-Extended); verwijzing naar de sitemap; user-agentnamen verifiëren
+- JSON-LD via één Schema-component: Organization + Person + WebSite (home), Service (diensten), FAQPage (waar een FAQ staat), Article (blog), BreadcrumbList (alle pagina's behalve home)
+- Alle content server-side gerenderd; niets dat alleen via JavaScript laadt
+- 404-pagina in huisstijl met links naar de drie pijlers en contact
+- Afbeeldingen via Astro's image-component
+
+## Pagina-skeletten
+
+Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secundaire CTA naar /cases/ of het instapproduct.
+
+### /seo/
+
+- Title: SEO-specialist | strategie én uitvoering, freelance | Gladvisor
+- Meta: Freelance SEO-specialist voor e-commerce en B2B. Strategie en uitvoering in één hand, gestuurd op omzet en relevant verkeer.
+- H1: SEO-specialist die strategie en uitvoering niet scheidt
+- Hero, proof bar (13+ jaar, +18% na migratie, 2x nominatie Website van het Jaar, logostrip)
+- H2 Wanneer je mij inschakelt: drie situaties met doorlink naar /seo/seo-audit/, /seo/website-migratie/, /seo/seo-strategie/
+- H2 Hoe ik werk: nulmeting (techniek, content, autoriteit, AI-zichtbaarheid standaard), prioritering op business impact (quick wins, 1–3 maanden, 3–12 maanden), uitvoering met vaste eigenaar aan klantzijde
+- H2 Bewijs: Fortune Coffee kort, link naar case en /seo/website-migratie/
+- H2 SEO-specialist in de regio Rotterdam
+- FAQ (4), instapproduct seo-quickscan, H2 Ook interessant
+- Schema: Service, Person, FAQPage
+
+### /seo/website-migratie/
+
+- Title: SEO bij een websitemigratie | zonder verkeersverlies overstappen | Gladvisor
+- H1: SEO bij een websitemigratie: overstappen zonder je verkeer te verliezen
+- H2's: waarom migraties verkeer kosten; aanpak in vier fases; case Fortune Coffee; wanneer je mij erbij haalt
+- Schema: Service, FAQPage
+
+### /seo/seo-audit/
+
+- Title: SEO-audit | techniek, content en AI-zichtbaarheid in één rapport | Gladvisor
+- H1: SEO-audit: weten waar je staat en wat als eerste moet
+- H2's: wat ik onderzoek; wat je krijgt; voor wie; voorbeeld
+- Schema: Service
+
+### /cro/
+
+- Title: Conversie optimalisatie (CRO) | analyse, verbeteren en meten | Gladvisor
+- H1: Conversie optimalisatie: meer omzet uit het verkeer dat je al hebt
+- H2's: herken je dit; mijn aanpak (CRO-analyse, expert review op vaste principes plus concurrentievergelijking, verbeteren en meten); waarom ik niet met A/B-testen begin; CRO en SEO in één hand; voorbeeld uit de praktijk
+- FAQ (4), instapproduct page-review
+- Schema: Service, FAQPage
+
+### /ai-zichtbaarheid/
+
+- Title: AI-zichtbaarheid (GEO) | zichtbaar in ChatGPT en AI Overviews | Gladvisor
+- H1: AI-zichtbaarheid: zichtbaar worden in ChatGPT, AI Overviews en Perplexity
+- H2's: herken je dit; wat AI-zichtbaarheid wel en niet is; mijn aanpak (quickscan, content, off-site, meetopzet); wat je niet nodig hebt; eerlijk over de stand van zaken; onderdeel van SEO, ook los af te nemen
+- FAQ (4), instapproduct ai-check
+- Schema: Service, FAQPage
+
+### /over/
+
+- Title: Over Glenn Snel | freelance SEO-specialist, Gladvisor B.V.
+- H1: Ik begin bij je business, niet bij je website
+- Opbouw why → hoe → wat: overtuiging; hoe ik werk; achtergrond; wat je van mij mag verwachten
+- Tekst staat klaar in src/content/pages/over.md
+- Schema: Person, Organization
+
+### Home
+
+- Title: Gladvisor | SEO-specialist, strategie én uitvoering | Glenn Snel
+- H1: Meer omzet uit organisch verkeer, met een plan én iemand die het uitvoert
+- Subregel: Freelance SEO-specialist voor e-commerce en B2B, met CRO en AI-zichtbaarheid als verlengstuk
+- Blokken: diensten (drie), bewijs, voor wie, hoe ik werk, logostrip, CTA kennismaking
+- Schema: Organization, Person, WebSite
+
+De definitieve teksten volgen later; gebruik tot die tijd placeholders die de structuur tonen.

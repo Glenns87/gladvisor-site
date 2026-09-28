@@ -152,6 +152,7 @@ const site = defineCollection({
       telefoon: z.string().min(1),
       linkedin: z.url(),
     }),
+    kvk: z.string().regex(/^\d{8}$/, 'kvk moet uit 8 cijfers bestaan'),
     werkgebied: z.string().min(1),
     entryOffers: z.object({
       'seo-quickscan': z.object({ titel: z.string().min(1), omschrijving: z.string().min(1) }),

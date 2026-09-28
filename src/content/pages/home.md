@@ -1,5 +1,5 @@
 ---
-title: Gladvisor (placeholder) | SEO-specialist
+title: Glenn Snel | freelance SEO-specialist | Gladvisor
 description: Placeholder voor de homepage. De definitieve meta description volgt.
 schema: [Organization, Person, WebSite]
 h1: Placeholder voor de H1 van de homepage

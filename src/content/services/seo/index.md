@@ -1,5 +1,5 @@
 ---
-title: SEO-specialist (placeholder) | Gladvisor
+title: SEO-specialist, strategie én uitvoering | Gladvisor
 description: Placeholder voor de pijlerpagina SEO. De definitieve meta description volgt.
 schema: [Service, Person, FAQPage]
 h1: Placeholder voor de H1 van de SEO-pijler

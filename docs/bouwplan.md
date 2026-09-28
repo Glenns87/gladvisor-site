@@ -40,7 +40,7 @@ Instapproducten (secundaire conversie): seo-quickscan (op /seo/), page-review (o
 
 ### Stap 1: contentmodel
 
-Collecties in src/content.config.ts met zod. De build moet falen bij een te lange title, een ontbrekend verplicht veld of een verwijzing naar iets dat niet bestaat (gebruik reference()).
+Collecties in src/content.config.ts met zod. De build moet falen bij een te lange title, een ontbrekend verplicht veld of een verwijzing naar iets dat niet bestaat (gebruik reference()). Ook faalt de build als pillar (blog) of services (cases) naar een service verwijst die geen pijler is.
 
 | Collectie | Map | Inhoud |
 | --- | --- | --- |
@@ -52,7 +52,7 @@ Collecties in src/content.config.ts met zod. De build moet falen bij een te lang
 
 Gedeelde SEO-velden (alle collecties):
 
-- title: verplicht, max. 60 tekens
+- title: verplicht, max. 60 tekens, patroon 'onderwerp | Gladvisor'
 - description: verplicht, max. 155 tekens
 - noindex: standaard false
 - ogImage: optioneel
@@ -73,7 +73,7 @@ services:
 cases:
 
 - client, sector, role, period
-- services: lijst van reference naar pijlers
+- services: lijst van reference naar services van type pijler
 - result: { metric, value, context }
 - quote: { text, name, role } (optioneel)
 - logo, featured, order
@@ -81,7 +81,7 @@ cases:
 blog:
 
 - h1, focusKeyword
-- pillar: verplichte reference naar een pijler
+- pillar: verplichte reference naar een service van type pijler
 - publishDate, updatedDate, author (standaard 'Glenn Snel')
 
 pages:
@@ -92,6 +92,7 @@ site.yaml:
 
 - logos: { name, file, visible } (KPN: visible false)
 - contact: mail, telefoon, LinkedIn
+- kvk: KvK-nummer (8 cijfers), voor de footer
 - werkgebied: tekst zoals onder Context
 - entryOffers: seo-quickscan, page-review, ai-check, elk met titel en korte omschrijving
 
@@ -125,7 +126,9 @@ Contrast: goud nooit voor kleine lopende tekst of links. Links en knoptekst in -
 Typografie:
 
 - font-family: Arial, Helvetica, sans-serif; geen webfonts
-- Desktop (mobiel ca. 80%): H1 44px bold, H2 28px bold, H3 18px bold, lead 20px, body 17px regelhoogte 1.6, klein 14px
+- Desktop: H1 44px bold, H2 28px bold, H3 18px bold, lead 20px, body 17px regelhoogte 1.6, klein 14px
+- Mobiel (onder 768px): H1 35px, H2 22px, H3 18px, lead 16px, body 17px, klein 14px
+- Breakpoint: 768px; mobiel eerst, desktopwaarden vanaf min-width 768px
 - Eyebrow: 12px, hoofdletters, letter-spacing 0.2em, --muted, bijv. 'DIENST · SEO'
 - Lopende tekst max-width 680px
 
@@ -216,7 +219,7 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 
 ### /seo/
 
-- Title: SEO-specialist | strategie én uitvoering, freelance | Gladvisor
+- Title: SEO-specialist, strategie én uitvoering | Gladvisor
 - Meta: Freelance SEO-specialist voor e-commerce en B2B. Strategie en uitvoering in één hand, gestuurd op omzet en relevant verkeer.
 - H1: SEO-specialist die strategie en uitvoering niet scheidt
 - Hero, proof bar (13+ jaar, +18% na migratie, 2x nominatie Website van het Jaar, logostrip)
@@ -229,21 +232,21 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 
 ### /seo/website-migratie/
 
-- Title: SEO bij een websitemigratie | zonder verkeersverlies overstappen | Gladvisor
+- Title: SEO bij websitemigratie: zonder verkeersverlies | Gladvisor
 - H1: SEO bij een websitemigratie: overstappen zonder je verkeer te verliezen
 - H2's: waarom migraties verkeer kosten; aanpak in vier fases; case Fortune Coffee; wanneer je mij erbij haalt
 - Schema: Service, FAQPage
 
 ### /seo/seo-audit/
 
-- Title: SEO-audit | techniek, content en AI-zichtbaarheid in één rapport | Gladvisor
+- Title: SEO-audit: techniek, content en AI-zichtbaarheid | Gladvisor
 - H1: SEO-audit: weten waar je staat en wat als eerste moet
 - H2's: wat ik onderzoek; wat je krijgt; voor wie; voorbeeld
 - Schema: Service
 
 ### /cro/
 
-- Title: Conversie optimalisatie (CRO) | analyse, verbeteren en meten | Gladvisor
+- Title: CRO-specialist: conversie optimalisatie | Gladvisor
 - H1: Conversie optimalisatie: meer omzet uit het verkeer dat je al hebt
 - H2's: herken je dit; mijn aanpak (CRO-analyse, expert review op vaste principes plus concurrentievergelijking, verbeteren en meten); waarom ik niet met A/B-testen begin; CRO en SEO in één hand; voorbeeld uit de praktijk
 - FAQ (4), instapproduct page-review
@@ -251,7 +254,7 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 
 ### /ai-zichtbaarheid/
 
-- Title: AI-zichtbaarheid (GEO) | zichtbaar in ChatGPT en AI Overviews | Gladvisor
+- Title: AI-zichtbaarheid (GEO): ChatGPT en AI Overviews | Gladvisor
 - H1: AI-zichtbaarheid: zichtbaar worden in ChatGPT, AI Overviews en Perplexity
 - H2's: herken je dit; wat AI-zichtbaarheid wel en niet is; mijn aanpak (quickscan, content, off-site, meetopzet); wat je niet nodig hebt; eerlijk over de stand van zaken; onderdeel van SEO, ook los af te nemen
 - FAQ (4), instapproduct ai-check
@@ -267,7 +270,7 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 
 ### Home
 
-- Title: Gladvisor | SEO-specialist, strategie én uitvoering | Glenn Snel
+- Title: Glenn Snel | freelance SEO-specialist | Gladvisor
 - H1: Meer omzet uit organisch verkeer, met een plan én iemand die het uitvoert
 - Subregel: Freelance SEO-specialist voor e-commerce en B2B, met CRO en AI-zichtbaarheid als verlengstuk
 - Blokken: diensten (drie), bewijs, voor wie, hoe ik werk, logostrip, CTA kennismaking

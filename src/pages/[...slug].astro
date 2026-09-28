@@ -1,0 +1,15 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Service from '../layouts/Service.astro';
+import { getPublished } from '../lib/content';
+
+// Dienstpagina's: /seo/, /seo/website-migratie/, /cro/, ...
+export const getStaticPaths = (async () => {
+  const services = await getPublished('services');
+  return services.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+---
+
+<Service entry={entry} />

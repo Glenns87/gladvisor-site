@@ -1,0 +1,102 @@
+---
+import Button from './Button.astro';
+import Logo from './Logo.astro';
+import { mainNav } from '../lib/nav';
+
+// Mobiel: logo en knop op de eerste regel, navigatie eronder.
+// Vanaf 768px alles op één regel. Geen JavaScript nodig.
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => path === href || path.startsWith(href);
+---
+
+<header class="header">
+  <div class="container header__inner">
+    <Logo />
+    <nav class="header__nav" aria-label="Hoofdmenu">
+      <ul>
+        {
+          mainNav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <Button href="/contact/" class="header__cta">Kennismaken</Button>
+  </div>
+</header>
+
+<style>
+  .header {
+    border-bottom: var(--hairline);
+  }
+
+  .header__inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'logo cta'
+      'nav nav';
+    align-items: center;
+    gap: var(--space-2);
+    padding-block: var(--space-2);
+  }
+
+  .header__inner > :global(.logo) {
+    grid-area: logo;
+  }
+
+  .header__nav {
+    grid-area: nav;
+  }
+
+  .header__nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .header__nav a {
+    display: inline-block;
+    padding-block: 4px;
+    font-size: 15px;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+  }
+
+  .header__nav a:hover,
+  .header__nav a[aria-current='page'] {
+    border-bottom-color: var(--gold);
+  }
+
+  .header__inner > :global(.header__cta) {
+    grid-area: cta;
+    min-height: 40px;
+    padding: 8px var(--space-2);
+    font-size: 15px;
+  }
+
+  @media (min-width: 768px) {
+    .header__inner {
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas: 'logo nav cta';
+      gap: var(--space-4);
+      padding-block: var(--space-3);
+    }
+
+    .header__nav ul {
+      justify-content: flex-end;
+      column-gap: var(--space-3);
+    }
+
+    .header__nav a {
+      font-size: 16px;
+    }
+  }
+</style>

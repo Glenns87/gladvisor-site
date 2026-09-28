@@ -5,18 +5,27 @@ logos:
   - name: MediaMarkt
     file: /logos/mediamarkt.svg
     visible: true
-  - name: Fingerspitz
-    file: /logos/fingerspitz.svg
+  - name: Horloge.nl
+    file: /logos/horloge-nl.svg
+    visible: true
+  - name: RCN
+    file: /logos/rcn.svg
+    visible: true
+  - name: Fortune Coffee
+    file: /logos/fortune-coffee.svg
     visible: true
   - name: Alpine
     file: /logos/alpine.svg
     visible: true
-  - name: Rinkel
-    file: /logos/rinkel.svg
-    visible: true
   - name: Bamigo
     file: /logos/bamigo.svg
     visible: true
+  - name: Fingerspitz
+    file: /logos/fingerspitz.svg
+    visible: false
+  - name: Rinkel
+    file: /logos/rinkel.svg
+    visible: false
   # Staat uit tot het contract het toelaat.
   - name: KPN
     file: /logos/kpn.svg

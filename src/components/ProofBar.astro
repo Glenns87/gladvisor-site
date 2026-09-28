@@ -3,11 +3,12 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { getSite } from '../lib/site';
 
-// --bg-soft vlak met drie cijfers groot in goud en een label eronder,
-// daaronder de logostrip in grijs. Alleen logo's met visible: true.
-// Zolang een logobestand in public/ ontbreekt, staat de naam er als tekst.
+// --bg-soft vlak met drie cijfers groot in goud, een label eronder en
+// optioneel een bron als kleine regel in --muted. Daaronder de logostrip in
+// grijs, alleen logo's met visible: true. Zolang een logobestand in public/
+// ontbreekt, staat de naam er als gewone tekst.
 interface Props {
-  items: { value: string; label: string }[];
+  items: { value: string; label: string; source?: string }[];
   showLogos?: boolean;
 }
 
@@ -26,7 +27,8 @@ const logos = site.logos
           {items.slice(0, 3).map((item) => (
             <div>
               <dt>{item.label}</dt>
-              <dd>{item.value}</dd>
+              <dd class="proof-bar__value">{item.value}</dd>
+              {item.source && <dd class="proof-bar__source">{item.source}</dd>}
             </div>
           ))}
         </dl>
@@ -73,12 +75,16 @@ const logos = site.logos
   /* Cijfer boven het label; in de HTML staat het label eerst (dt voor dd). */
   .proof-bar__stats > div {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 4px;
   }
 
   .proof-bar__stats dd {
     margin: 0;
+  }
+
+  .proof-bar__value {
+    order: -1;
     color: var(--gold);
     font-size: 40px;
     font-weight: var(--weight-bold);
@@ -86,6 +92,11 @@ const logos = site.logos
   }
 
   .proof-bar__stats dt {
+    color: var(--text);
+    font-size: 15px;
+  }
+
+  .proof-bar__source {
     color: var(--muted);
     font-size: var(--fs-small);
   }
@@ -105,8 +116,7 @@ const logos = site.logos
     padding: 0;
     list-style: none;
     color: var(--muted);
-    font-size: 18px;
-    font-weight: var(--weight-bold);
+    font-size: 17px;
   }
 
   .proof-bar__logos img {
@@ -126,7 +136,7 @@ const logos = site.logos
       gap: var(--space-4);
     }
 
-    .proof-bar__stats dd {
+    .proof-bar__value {
       font-size: 48px;
     }
   }

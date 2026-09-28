@@ -50,14 +50,18 @@ const services = defineCollection({
       pillar: reference('services').optional(),
       hero: z.object({
         statement: z.string().min(1),
-        audience: z.string().min(1),
+        audience: z.string().min(1).optional(),
         ctaPrimary: link,
       }),
       proof: z
         .array(
           z.union([
             reference('cases'),
-            z.object({ label: z.string().min(1), value: z.string().min(1) }),
+            z.object({
+              label: z.string().min(1),
+              value: z.string().min(1),
+              source: z.string().min(1).optional(),
+            }),
           ]),
         )
         .default([]),

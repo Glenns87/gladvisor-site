@@ -27,7 +27,7 @@ const proof = await Promise.all(
     if ('label' in item) return item;
     const found = await getEntry(item);
     if (!found) throw new Error(`Case '${item.id}' niet gevonden`);
-    return { value: found.data.result.value, label: `${found.data.result.metric}, ${found.data.client}` };
+    return { value: found.data.result.value, label: found.data.result.metric, source: found.data.client };
   }),
 );
 
@@ -52,7 +52,6 @@ const Divider = isPillar ? SectionDivider : SectionHeader;
     eyebrow={`Dienst · ${pillarLabel(entry.id)}`}
     title={data.h1}
     lead={data.hero.statement}
-    audience={data.hero.audience}
     cta={data.hero.ctaPrimary}
     secondary={data.softConversion && { label: data.softConversion.label, href: `#${offerId}` }}
   />

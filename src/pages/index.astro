@@ -20,14 +20,14 @@ const pillars = (await getPublished('services')).filter((s) => s.data.type === '
 const cases = (await getPublished('cases'))
   .filter((c) => c.data.featured)
   .sort((a, b) => a.data.order - b.data.order);
-const proof = cases.map((c) => ({ value: c.data.result.value, label: `${c.data.result.metric}, ${c.data.client}` }));
+const proof = cases.map((c) => ({ value: c.data.result.value, label: c.data.result.metric, source: c.data.client }));
 ---
 
 <Base title={home.data.title} description={home.data.description} noindex={home.data.noindex}>
   <Hero
     eyebrow="Freelance SEO-specialist"
     title={home.data.h1}
-    cta={{ label: 'Kennismaken', href: '/contact/' }}
+    cta={{ label: 'Plan een kennismaking', href: '/contact/' }}
     secondary={cases[0] && { label: 'Bekijk een case', href: casePath(cases[0].id) }}
   />
 

@@ -32,7 +32,7 @@ Regel: commerciële subonderwerpen onder de pijler, informationele in /blog/ met
 | /cases/ en /cases/<naam>/ | bewijs | – | ja |
 | /over/, /contact/, /privacy/ | vast | – | ja |
 
-Cases bij launch: fortune-coffee, horloge-nl, rcn. Logostrip: MediaMarkt, Fingerspitz, Alpine, Rinkel, Bamigo.
+Cases bij launch: fortune-coffee, horloge-nl, rcn. Logostrip (in deze volgorde): MediaMarkt, Horloge.nl, RCN, Fortune Coffee, Alpine, Bamigo. Fingerspitz, Rinkel en KPN staan op visible: false.
 
 Instapproducten (secundaire conversie): seo-quickscan (op /seo/), page-review (op /cro/), ai-check (op /ai-zichtbaarheid/).
 
@@ -64,8 +64,8 @@ services:
 - h1, focusKeyword, secondaryKeywords
 - type: 'pijler' | 'sub'
 - pillar: reference naar services (verplicht bij sub)
-- hero: statement, audience, ctaPrimary { label, href }
-- proof: lijst van reference naar cases en/of { label, value }
+- hero: statement (de lead, inclusief doelgroep), audience (optioneel, wordt niet los getoond), ctaPrimary { label, href }; label in de hero: 'Plan een kennismaking'
+- proof: lijst van reference naar cases en/of { label, value, source (optioneel) }
 - softConversion: { label, description, formType: 'seo-quickscan' | 'page-review' | 'ai-check' }
 - faq: lijst van { q, a } (voedt FAQPage-schema)
 - related: lijst van reference naar services of blog
@@ -143,8 +143,8 @@ Basiscomponenten:
 | Component | Opbouw |
 | --- | --- |
 | Header | goud vierkantje + 'Gladvisor' bold links; navigatie rechts (SEO, CRO, AI-zichtbaarheid, Cases, Over); knop 'Kennismaken' |
-| Hero | eyebrow, H1, lead, kort goud streepje, primaire CTA + tekstlink naar instapproduct |
-| ProofBar | --bg-soft vlak, 3 cijfers groot in goud met label eronder, logostrip in grijs |
+| Hero | desktop tweekoloms: links eyebrow, H1, lead (met doelgroep), primaire CTA 'Plan een kennismaking' + tekstlink naar instapproduct; rechts portret op ca. 40% breedte, beeldverhouding 4:5. Mobiel: portret kleiner onder de knoppen. Tot de foto er is: placeholder in --bg-soft met hairline-rand, alt 'Portret van Glenn Snel' |
+| ProofBar | --bg-soft vlak, 3 cijfers groot in goud met label eronder en optioneel een bron als kleine regel in --muted; logostrip in grijs (zonder logobestand: naam in --muted, regular) |
 | SectionHeader | eyebrow, H2, hairline over de contentbreedte |
 | NumberedRow | hairline, goud nummer 01/02/03, titel bold, omschrijving --muted; mobiel gestapeld |
 | SectionDivider | groot ghost-cijfer in --gold-ghost achter de H2 (alleen pijlers en home) |

@@ -1,0 +1,95 @@
+---
+// Veelgestelde vragen met details/summary: werkt zonder JavaScript.
+// --bg-soft vlak, hairline tussen de vragen, plusteken in goud.
+interface Props {
+  items: { q: string; a: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="faq">
+  {
+    items.map((item) => (
+      <details class="faq__item">
+        <summary>
+          <span>{item.q}</span>
+          <span class="faq__icon" aria-hidden="true" />
+        </summary>
+        <p class="faq__answer">{item.a}</p>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .faq {
+    padding: var(--space-1) var(--space-3);
+    background: var(--bg-soft);
+  }
+
+  .faq__item + .faq__item {
+    border-top: var(--hairline);
+  }
+
+  summary {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding-block: var(--space-3);
+    color: var(--ink);
+    font-weight: var(--weight-bold);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Plusteken uit twee streepjes; bij openen verdwijnt de verticale. */
+  .faq__icon {
+    position: relative;
+    flex: none;
+    width: 16px;
+    height: 16px;
+    margin-top: 0.3em;
+  }
+
+  .faq__icon::before,
+  .faq__icon::after {
+    content: '';
+    position: absolute;
+    background: var(--gold);
+  }
+
+  .faq__icon::before {
+    top: 7px;
+    left: 0;
+    width: 16px;
+    height: 2px;
+  }
+
+  .faq__icon::after {
+    top: 0;
+    left: 7px;
+    width: 2px;
+    height: 16px;
+  }
+
+  details[open] .faq__icon::after {
+    display: none;
+  }
+
+  .faq__answer {
+    max-width: var(--measure);
+    padding-bottom: var(--space-3);
+  }
+
+  @media (min-width: 768px) {
+    .faq {
+      padding-inline: var(--space-5);
+    }
+  }
+</style>

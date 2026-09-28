@@ -1,0 +1,75 @@
+---
+import Button from './Button.astro';
+
+// Eyebrow, H1, lead, kort goud streepje, primaire CTA en een tekstlink naar
+// het instapproduct.
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  audience?: string;
+  cta?: { label: string; href: string };
+  secondary?: { label: string; href: string };
+}
+
+const { eyebrow, title, lead, audience, cta, secondary } = Astro.props;
+---
+
+<section class="hero container">
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <h1>{title}</h1>
+  {lead && <p class="lead hero__lead">{lead}</p>}
+  {audience && <p class="small hero__audience">{audience}</p>}
+  <span class="hero__stripe" aria-hidden="true"></span>
+  {
+    (cta || secondary) && (
+      <div class="hero__actions">
+        {cta && <Button href={cta.href}>{cta.label}</Button>}
+        {secondary && <a href={secondary.href}>{secondary.label}</a>}
+      </div>
+    )
+  }
+</section>
+
+<style>
+  .hero {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-2);
+    padding-block: var(--space-5) var(--space-2);
+  }
+
+  .hero h1 {
+    max-width: 18em;
+  }
+
+  .hero__lead {
+    max-width: var(--measure);
+  }
+
+  .hero__audience {
+    max-width: var(--measure);
+    color: var(--muted);
+  }
+
+  .hero__stripe {
+    width: 48px;
+    height: 3px;
+    margin-block: var(--space-1);
+    background: var(--gold);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      gap: var(--space-3);
+      padding-block: var(--space-7) var(--space-3);
+    }
+  }
+</style>

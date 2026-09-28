@@ -1,0 +1,31 @@
+---
+// Opent elke sectie: eyebrow, H2 en een hairline over de contentbreedte.
+interface Props {
+  eyebrow: string;
+  title: string;
+  id?: string;
+  level?: 2 | 3;
+}
+
+const { eyebrow, title, id, level = 2 } = Astro.props;
+const Heading = `h${level}` as 'h2' | 'h3';
+---
+
+<header class="section-header">
+  <p class="eyebrow">{eyebrow}</p>
+  <Heading id={id}>{title}</Heading>
+</header>
+
+<style>
+  .section-header {
+    display: grid;
+    gap: var(--space-1);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom: var(--hairline);
+  }
+
+  .section-header > :is(h2, h3) {
+    max-width: 24em;
+  }
+</style>

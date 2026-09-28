@@ -1,0 +1,57 @@
+---
+import SectionHeader from './SectionHeader.astro';
+
+// SectionHeader met een groot ghost-cijfer in --gold-ghost erachter.
+// Alleen op pijlers en de home.
+interface Props {
+  number: number;
+  eyebrow: string;
+  title: string;
+  id?: string;
+}
+
+const { number, ...header } = Astro.props;
+const ghost = String(number).padStart(2, '0');
+---
+
+<div class="section-divider">
+  <span class="section-divider__ghost" aria-hidden="true">{ghost}</span>
+  <SectionHeader {...header} />
+</div>
+
+<style>
+  .section-divider {
+    position: relative;
+    isolation: isolate;
+    padding-top: var(--space-5);
+  }
+
+  .section-divider__ghost {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    color: var(--gold-ghost);
+    font-size: 96px;
+    font-weight: var(--weight-bold);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .section-divider {
+      padding-top: var(--space-6);
+    }
+
+    .section-divider__ghost {
+      right: auto;
+      left: -0.06em;
+      font-size: 160px;
+    }
+
+    .section-divider :global(.section-header) {
+      padding-left: 30%;
+    }
+  }
+</style>

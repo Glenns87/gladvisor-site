@@ -4,6 +4,9 @@
 // van alle collecties, en logt het een verwijzing naar een niet-bestaande entry
 // alleen als fout zonder de build te stoppen. Het bouwplan eist dat de build
 // dan faalt; dit script maakt dat hard.
+//
+// Daarna volgt scripts/check-pillars.mjs: pillar (blog) en services (cases)
+// moeten naar een service van type pijler verwijzen.
 import { spawn } from 'node:child_process';
 
 const child = spawn('npx', ['astro', 'sync'], { stdio: ['inherit', 'pipe', 'pipe'] });
@@ -22,4 +25,5 @@ child.on('close', (code) => {
     console.error('\nBuild gestopt: er verwijst content naar een entry die niet bestaat (zie hierboven).');
     process.exit(1);
   }
+  import('./check-pillars.mjs');
 });

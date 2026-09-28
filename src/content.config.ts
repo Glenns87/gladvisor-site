@@ -93,6 +93,8 @@ const cases = defineCollection({
   loader: markdown('cases'),
   schema: z.object({
     ...seo,
+    // De kop is het resultaat, niet de klantnaam.
+    h1: z.string().min(1),
     client: z.string().min(1),
     sector: z.string().min(1),
     role: z.string().min(1),
@@ -134,6 +136,7 @@ const pages = defineCollection({
   schema: z.object({
     ...seo,
     h1: z.string().min(1),
+    lead: z.string().min(1).optional(),
   }),
 });
 

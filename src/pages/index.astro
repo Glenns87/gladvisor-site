@@ -27,6 +27,7 @@ const proof = cases.map((c) => ({ value: c.data.result.value, label: c.data.resu
   <Hero
     eyebrow="Freelance SEO-specialist"
     title={home.data.h1}
+    lead={home.data.lead}
     cta={{ label: 'Plan een kennismaking', href: '/contact/' }}
     secondary={cases[0] && { label: 'Bekijk een case', href: casePath(cases[0].id) }}
   />

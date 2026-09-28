@@ -1,0 +1,117 @@
+---
+// Koprij bold, hairlines, geen gekleurde vlakken. Op mobiel scrollt de tabel
+// horizontaal binnen zijn eigen vlak. Een cel kan een status krijgen
+// (alleen in cases en tabellen): een klein bolletje in de statuskleur,
+// de tekst zelf blijft --text.
+type Status = 'positive' | 'attention' | 'risk';
+type Cell = string | { text: string; status: Status };
+
+interface Props {
+  caption: string;
+  head: string[];
+  rows: Cell[][];
+  hideCaption?: boolean;
+}
+
+const { caption, head, rows, hideCaption = false } = Astro.props;
+const statusLabel: Record<Status, string> = {
+  positive: 'goed',
+  attention: 'aandacht',
+  risk: 'risico',
+};
+---
+
+<div class="table" role="region" aria-label={caption} tabindex="0">
+  <table>
+    <caption class:list={{ 'visually-hidden': hideCaption }}>{caption}</caption>
+    <thead>
+      <tr>{head.map((cell) => <th scope="col">{cell}</th>)}</tr>
+    </thead>
+    <tbody>
+      {
+        rows.map((row) => (
+          <tr>
+            {row.map((cell, index) => {
+              const Tag = index === 0 ? 'th' : 'td';
+              return (
+                <Tag scope={index === 0 ? 'row' : undefined}>
+                  {typeof cell === 'string' ? (
+                    cell
+                  ) : (
+                    <span class="table__status">
+                      <span class={`table__dot table__dot--${cell.status}`} aria-hidden="true" />
+                      {cell.text}
+                      <span class="visually-hidden"> ({statusLabel[cell.status]})</span>
+                    </span>
+                  )}
+                </Tag>
+              );
+            })}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+    font-size: var(--fs-small);
+  }
+
+  caption {
+    padding-bottom: var(--space-2);
+    color: var(--muted);
+    text-align: left;
+  }
+
+  th,
+  td {
+    padding: 12px var(--space-2) 12px 0;
+    border-bottom: var(--hairline);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  thead th {
+    border-bottom-color: var(--line-strong);
+    color: var(--ink);
+    font-weight: var(--weight-bold);
+  }
+
+  tbody th {
+    color: var(--ink);
+    font-weight: var(--weight-bold);
+  }
+
+  .table__status {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-1);
+  }
+
+  .table__dot {
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .table__dot--positive { background: var(--positive); }
+  .table__dot--attention { background: var(--attention); }
+  .table__dot--risk { background: var(--risk); }
+
+  @media (min-width: 768px) {
+    table {
+      font-size: var(--fs-body);
+    }
+  }
+</style>

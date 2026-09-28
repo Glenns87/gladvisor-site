@@ -1,0 +1,277 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import CaseCard from '../components/CaseCard.astro';
+import EntryOffer from '../components/EntryOffer.astro';
+import Faq from '../components/Faq.astro';
+import Hero from '../components/Hero.astro';
+import NumberedRow from '../components/NumberedRow.astro';
+import ProofBar from '../components/ProofBar.astro';
+import SectionDivider from '../components/SectionDivider.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Table from '../components/Table.astro';
+
+// Interne referentiepagina met alle componenten en voorbeeldtekst.
+// Staat op noindex en hoort niet in de sitemap (filter volgt in sessie 3).
+const colors = [
+  ['--bg', 'achtergrond overal'],
+  ['--bg-soft', 'proof bar, FAQ, formulier, instapproduct'],
+  ['--line', 'hairlines, tabelranden'],
+  ['--line-strong', 'invoervelden, focusrand'],
+  ['--ink', 'koppen, knoppen, links'],
+  ['--text', 'lopende tekst'],
+  ['--muted', 'eyebrows, subteksten, metadata'],
+  ['--muted-warm', 'grotere tekst of decoratie'],
+  ['--gold', 'nummers, accentstreepjes, grote cijfers'],
+  ['--gold-logo', 'logo-vierkantje'],
+  ['--gold-ghost', 'ghost-cijfers achter secties'],
+  ['--positive', 'alleen in cases en tabellen'],
+  ['--attention', 'alleen in cases en tabellen'],
+  ['--risk', 'alleen in cases en tabellen'],
+];
+
+const faq = [
+  {
+    q: 'Werk je op locatie of remote?',
+    a: 'Allebei. Binnen ongeveer een uur reistijd van Nieuwerkerk aan den IJssel werk ik graag een deel van de week bij je op kantoor; de rest doe ik remote.',
+  },
+  {
+    q: 'Hoe lang duurt een SEO-audit?',
+    a: 'Voor een gemiddelde webshop reken ik op twee tot drie weken, afhankelijk van de omvang van de site en hoe snel ik toegang heb tot Search Console en analytics.',
+  },
+  {
+    q: 'Voer je de verbeteringen ook zelf uit?',
+    a: 'Ja, als dat past. Ik schrijf niet alleen het plan maar pak ook de uitvoering op, samen met een vaste eigenaar aan jouw kant.',
+  },
+  {
+    q: 'Neem je AI-zichtbaarheid mee in een SEO-traject?',
+    a: 'Standaard. In de nulmeting kijk ik ook hoe je merk terugkomt in AI Overviews en ChatGPT, zodat je weet waar je staat.',
+  },
+];
+---
+
+<Base
+  title="Stijlgids | Gladvisor"
+  description="Interne stijlgids met alle componenten van gladvisor.nl."
+  noindex
+>
+  <Hero
+    eyebrow="Stijlgids · intern"
+    title="SEO-specialist die strategie en uitvoering niet scheidt"
+    lead="Freelance SEO-specialist voor webshops en B2B-bedrijven zonder eigen SEO'er. Strategie en uitvoering in één hand, gestuurd op omzet en relevant verkeer."
+    cta={{ label: 'Plan een kennismaking', href: '/contact/' }}
+    secondary={{ label: 'Of begin met een SEO-quickscan', href: '#instapproduct' }}
+  />
+
+  <ProofBar
+    items={[
+      { value: '13+', label: 'jaar ervaring in SEO' },
+      { value: '+18%', label: 'organisch verkeer na Shopware-migratie', source: 'Fortune Coffee' },
+      { value: '2x', label: 'nominatie Website van het Jaar', source: 'RCN' },
+    ]}
+  />
+
+  <div class="container">
+    <section class="section" aria-labelledby="kleuren">
+      <SectionHeader eyebrow="Tokens" title="Kleuren" id="kleuren" />
+      <ul class="swatches">
+        {
+          colors.map(([token, usage]) => (
+            <li>
+              <span class="swatch" style={`background: var(${token})`} />
+              <code>{token}</code>
+              <span class="small">{usage}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="typografie">
+      <SectionHeader eyebrow="Tokens" title="Typografie" id="typografie" />
+      <div class="type-scale">
+        <p class="eyebrow">Eyebrow · Dienst · SEO</p>
+        <p class="type-h1">H1: Meer omzet uit organisch verkeer</p>
+        <p class="type-h2">H2: Wanneer je mij inschakelt</p>
+        <p class="type-h3">H3: Nulmeting op techniek, content en autoriteit</p>
+        <p class="lead">
+          Lead: een migratie kost bijna altijd tijdelijk verkeer. Met een goede voorbereiding blijft dat verlies
+          klein en kort.
+        </p>
+        <p class="prose">
+          Body: bij een websitemigratie verandert vaak meer dan je denkt. URL's, interne links, templates en
+          laadtijd schuiven tegelijk. Ik breng vooraf in kaart welke pagina's het verkeer en de omzet dragen, en
+          zorg dat die er na de overstap nog precies zo goed voor staan. <a href="/seo/">Lees meer over SEO</a>.
+        </p>
+        <p class="small">Klein: werkgebied binnen een uur reistijd van Nieuwerkerk aan den IJssel.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="knoppen">
+      <SectionHeader eyebrow="Component" title="Button" id="knoppen" />
+      <div class="row">
+        <Button href="/contact/">Plan een kennismaking</Button>
+        <Button href="/cases/" variant="secondary">Bekijk de cases</Button>
+        <Button>Knop zonder link</Button>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="section-header">
+      <SectionHeader eyebrow="Component" title="SectionHeader" id="section-header" />
+      <SectionHeader eyebrow="Aanpak" title="Hoe ik werk" level={3} />
+      <p class="small note">Eyebrow, kop en hairline over de contentbreedte. Opent elke sectie.</p>
+    </section>
+
+    <section class="section" aria-labelledby="section-divider">
+      <SectionHeader eyebrow="Component" title="SectionDivider" id="section-divider" />
+      <SectionDivider number={2} eyebrow="Aanpak" title="Hoe ik werk" />
+      <p class="small note">Met ghost-cijfer in --gold-ghost. Alleen op pijlers en de home.</p>
+    </section>
+
+    <section class="section" aria-labelledby="numbered-row">
+      <SectionHeader eyebrow="Component" title="NumberedRow" id="numbered-row" />
+      <NumberedRow
+        number={1}
+        title="Nulmeting"
+        description="Techniek, content, autoriteit en AI-zichtbaarheid. Zo weet je waar je staat voordat er iets verandert."
+      />
+      <NumberedRow
+        number={2}
+        title="Prioriteren op business impact"
+        description="Quick wins eerst, daarna wat binnen één tot drie maanden en binnen een jaar het meeste oplevert."
+      />
+      <NumberedRow
+        number={3}
+        title="Uitvoeren met een vaste eigenaar"
+        description="Ik voer uit of stuur aan, met één aanspreekpunt aan jouw kant."
+        href="/seo/"
+      />
+    </section>
+
+    <section class="section" aria-labelledby="case-card">
+      <SectionHeader eyebrow="Component" title="CaseCard" id="case-card" />
+      <div class="cards">
+        <CaseCard
+          client="Fortune Coffee"
+          sector="E-commerce"
+          result={{
+            value: '+18%',
+            metric: 'organisch verkeer',
+            context: 'Na de migratie naar Shopware, vergeleken met dezelfde periode een jaar eerder.',
+          }}
+          href="/cases/fortune-coffee/"
+        />
+        <CaseCard
+          client="Voorbeeldklant"
+          sector="B2B"
+          result={{
+            value: '2x',
+            metric: 'aanvragen via organisch',
+            context: 'Na herschrijven van de dienstpagina’s en een betere interne linkstructuur.',
+          }}
+          href="/cases/"
+        />
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="tabel">
+      <SectionHeader eyebrow="Component" title="Table" id="tabel" />
+      <Table
+        caption="Checklist websitemigratie, stand van zaken per onderdeel"
+        head={['Onderdeel', 'Status', 'Toelichting', 'Eigenaar']}
+        rows={[
+          ['Redirectplan', { text: 'Klaar', status: 'positive' }, '301 per oude URL, getest op staging', 'Glenn'],
+          ['Canonicals', { text: 'Loopt', status: 'attention' }, 'Categoriepagina’s met filters nog nalopen', 'Developer'],
+          ['Interne links', { text: 'Risico', status: 'risk' }, 'Menu verwijst nog naar oude URL’s', 'Developer'],
+          ['Search Console', { text: 'Klaar', status: 'positive' }, 'Nieuwe property en sitemap ingediend', 'Glenn'],
+        ]}
+      />
+    </section>
+
+    <section class="section" aria-labelledby="faq-demo">
+      <SectionHeader eyebrow="Component" title="Faq" id="faq-demo" />
+      <Faq items={faq} />
+    </section>
+
+    <section class="section" aria-labelledby="entry-offer">
+      <SectionHeader eyebrow="Component" title="EntryOffer" id="entry-offer" />
+      <EntryOffer
+        id="instapproduct"
+        formType="seo-quickscan"
+        title="SEO-quickscan"
+        description="Een korte scan van je site op de grootste kansen en risico’s. Je krijgt een lijst met wat als eerste moet."
+        buttonLabel="Vraag de quickscan aan"
+      />
+    </section>
+
+    <section class="section" aria-labelledby="header-footer">
+      <SectionHeader eyebrow="Component" title="Header en Footer" id="header-footer" />
+      <p class="note">
+        Header en Footer staan boven en onder deze pagina. Gegevens in de footer komen uit src/data/site.yaml.
+      </p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--space-3);
+    padding: 0;
+    list-style: none;
+  }
+
+  .swatches li {
+    display: grid;
+    gap: 4px;
+  }
+
+  .swatch {
+    height: 64px;
+    border: var(--hairline);
+  }
+
+  .swatches .small {
+    color: var(--muted);
+  }
+
+  .type-scale {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .type-h1,
+  .type-h2,
+  .type-h3 {
+    color: var(--ink);
+    font-weight: var(--weight-bold);
+    line-height: var(--lh-heading);
+  }
+
+  .type-h1 { font-size: var(--fs-h1); }
+  .type-h2 { font-size: var(--fs-h2); }
+  .type-h3 { font-size: var(--fs-h3); }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .note {
+    color: var(--muted);
+  }
+
+  .cards {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 768px) {
+    .cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+  }
+</style>

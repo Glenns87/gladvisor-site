@@ -1,0 +1,14 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Case from '../../layouts/Case.astro';
+import { getPublished } from '../../lib/content';
+
+export const getStaticPaths = (async () => {
+  const cases = await getPublished('cases');
+  return cases.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+---
+
+<Case entry={entry} />

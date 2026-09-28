@@ -1,0 +1,93 @@
+---
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import CaseCard from '../components/CaseCard.astro';
+import Hero from '../components/Hero.astro';
+import NumberedRow from '../components/NumberedRow.astro';
+import ProofBar from '../components/ProofBar.astro';
+import SectionDivider from '../components/SectionDivider.astro';
+import { getPublished } from '../lib/content';
+import { casePath, servicePath } from '../lib/nav';
+
+// Home: eigen template dat diensten, cases en logo's uit de andere
+// collecties haalt. De vaste teksten volgen later.
+const home = (await getPublished('pages')).find((page) => page.id === 'home');
+if (!home) throw new Error('src/content/pages/home.md ontbreekt of is een draft');
+const { Content } = await render(home);
+
+const pillars = (await getPublished('services')).filter((s) => s.data.type === 'pijler');
+const cases = (await getPublished('cases'))
+  .filter((c) => c.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+const proof = cases.map((c) => ({ value: c.data.result.value, label: c.data.result.metric, source: c.data.client }));
+---
+
+<Base title={home.data.title} description={home.data.description} noindex={home.data.noindex}>
+  <Hero
+    eyebrow="Freelance SEO-specialist"
+    title={home.data.h1}
+    lead={home.data.lead}
+    cta={{ label: 'Plan een kennismaking', href: '/contact/' }}
+    secondary={cases[0] && { label: 'Bekijk een case', href: casePath(cases[0].id) }}
+  />
+
+  <ProofBar items={proof} />
+
+  <div class="container section">
+    <div class="prose">
+      <Content />
+    </div>
+  </div>
+
+  <section class="container section" aria-labelledby="diensten">
+    <SectionDivider number={1} eyebrow="Diensten" title="Waar ik je mee help" id="diensten" />
+    {
+      pillars.map((pillar, index) => (
+        <NumberedRow
+          number={index + 1}
+          title={pillar.data.h1}
+          description={pillar.data.hero.statement}
+          href={servicePath(pillar.id)}
+        />
+      ))
+    }
+  </section>
+
+  {
+    cases.length > 0 && (
+      <section class="container section" aria-labelledby="bewijs">
+        <SectionDivider number={2} eyebrow="Bewijs" title="Resultaten bij klanten" id="bewijs" />
+        <div class="home__cases">
+          {cases.map((entry) => (
+            <CaseCard
+              client={entry.data.client}
+              sector={entry.data.sector}
+              result={entry.data.result}
+              href={casePath(entry.id)}
+            />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="container section home__cta" aria-labelledby="kennismaken">
+    <SectionDivider number={3} eyebrow="Kennismaken" title="Eerst even sparren?" id="kennismaken" />
+    <Button href="/contact/">Plan een kennismaking</Button>
+  </section>
+</Base>
+
+<style>
+  .home__cases {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 768px) {
+    .home__cases {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+  }
+</style>

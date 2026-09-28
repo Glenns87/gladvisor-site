@@ -1,6 +1,7 @@
 ---
 title: Case Fortune Coffee (placeholder) | Gladvisor
 description: Placeholder voor de case Fortune Coffee. De definitieve meta description volgt.
+h1: Websitemigratie naar Shopware zonder SEO-verlies
 client: Fortune Coffee
 sector: Placeholder sector
 role: Placeholder rol

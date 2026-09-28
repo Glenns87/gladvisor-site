@@ -1,0 +1,99 @@
+---
+import { getEntry, render, type CollectionEntry } from 'astro:content';
+import Base from './Base.astro';
+import EntryOffer from '../components/EntryOffer.astro';
+import Faq from '../components/Faq.astro';
+import Hero from '../components/Hero.astro';
+import NumberedRow from '../components/NumberedRow.astro';
+import ProofBar from '../components/ProofBar.astro';
+import SectionDivider from '../components/SectionDivider.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import { blogPath, pillarLabel, servicePath } from '../lib/nav';
+
+// Dienstpagina (pijler of sub). Een ghost-cijfer (SectionDivider) staat
+// alleen op pijlers; subpagina's krijgen een gewone SectionHeader.
+interface Props {
+  entry: CollectionEntry<'services'>;
+}
+
+const { entry } = Astro.props;
+const data = entry.data;
+const { Content } = await render(entry);
+const isPillar = data.type === 'pijler';
+
+// Proof: vaste cijfers of een case, waarvan het resultaat wordt getoond.
+const proof = await Promise.all(
+  data.proof.map(async (item) => {
+    if ('label' in item) return item;
+    const found = await getEntry(item);
+    if (!found) throw new Error(`Case '${item.id}' niet gevonden`);
+    return { value: found.data.result.value, label: found.data.result.metric, source: found.data.client };
+  }),
+);
+
+const related = (
+  await Promise.all(
+    data.related.map(async (ref) => {
+      const found = await getEntry(ref);
+      if (!found || found.data.draft) return undefined;
+      const href = found.collection === 'blog' ? blogPath(found.id) : servicePath(found.id);
+      return { title: found.data.h1, description: found.data.description, href };
+    }),
+  )
+).filter((item) => item !== undefined);
+
+const offerId = 'instapproduct';
+let section = 0;
+const Divider = isPillar ? SectionDivider : SectionHeader;
+---
+
+<Base title={data.title} description={data.description} noindex={data.noindex}>
+  <Hero
+    eyebrow={`Dienst · ${pillarLabel(entry.id)}`}
+    title={data.h1}
+    lead={data.hero.statement}
+    cta={data.hero.ctaPrimary}
+    secondary={data.softConversion && { label: data.softConversion.label, href: `#${offerId}` }}
+  />
+
+  {proof.length > 0 && <ProofBar items={proof} />}
+
+  <div class="container section">
+    <div class="prose">
+      <Content />
+    </div>
+  </div>
+
+  {
+    data.faq.length > 0 && (
+      <section class="container section" aria-labelledby="faq">
+        <Divider number={++section} eyebrow="FAQ" title="Veelgestelde vragen" id="faq" />
+        <Faq items={data.faq} />
+      </section>
+    )
+  }
+
+  {
+    data.softConversion && (
+      <div class="container section">
+        <EntryOffer
+          id={offerId}
+          formType={data.softConversion.formType}
+          title={data.softConversion.label}
+          description={data.softConversion.description}
+        />
+      </div>
+    )
+  }
+
+  {
+    related.length > 0 && (
+      <section class="container section" aria-labelledby="ook-interessant">
+        <Divider number={++section} eyebrow="Verder lezen" title="Ook interessant" id="ook-interessant" />
+        {related.map((item, index) => (
+          <NumberedRow number={index + 1} title={item.title} description={item.description} href={item.href} />
+        ))}
+      </section>
+    )
+  }
+</Base>

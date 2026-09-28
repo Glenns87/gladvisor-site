@@ -1,0 +1,80 @@
+---
+import { getEntry, render, type CollectionEntry } from 'astro:content';
+import Base from './Base.astro';
+import { pillarLabel, servicePath } from '../lib/nav';
+
+// Blogartikel. Onderaan staat altijd een vaste link omhoog naar de pijler.
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const data = entry.data;
+const { Content } = await render(entry);
+const pillar = await getEntry(data.pillar);
+if (!pillar) throw new Error(`Pijler '${data.pillar.id}' niet gevonden`);
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
+const isoDate = (date: Date) => date.toISOString().slice(0, 10);
+---
+
+<Base title={data.title} description={data.description} noindex={data.noindex}>
+  <article class="container post">
+    <header class="post__header">
+      <p class="eyebrow">Blog · {pillarLabel(pillar.id)}</p>
+      <h1>{data.h1}</h1>
+      <p class="small post__meta">
+        {data.author} · <time datetime={isoDate(data.publishDate)}>{formatDate(data.publishDate)}</time>
+        {
+          data.updatedDate && (
+            <>
+              {' · bijgewerkt '}
+              <time datetime={isoDate(data.updatedDate)}>{formatDate(data.updatedDate)}</time>
+            </>
+          )
+        }
+      </p>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <aside class="post__pillar" aria-label="Meer over dit onderwerp">
+      <p class="eyebrow">Hoort bij</p>
+      <p>
+        <a href={servicePath(pillar.id)}>{pillar.data.h1}</a>
+      </p>
+    </aside>
+  </article>
+</Base>
+
+<style>
+  .post__header {
+    display: grid;
+    gap: var(--space-2);
+    max-width: var(--measure);
+    padding-block: var(--space-5) var(--space-4);
+  }
+
+  .post__meta {
+    color: var(--muted);
+  }
+
+  .post__pillar {
+    display: grid;
+    gap: var(--space-1);
+    max-width: var(--measure);
+    margin-top: var(--section-gap);
+    padding-top: var(--space-3);
+    border-top: var(--hairline);
+    font-weight: var(--weight-bold);
+  }
+
+  @media (min-width: 768px) {
+    .post__header {
+      padding-top: var(--space-7);
+    }
+  }
+</style>

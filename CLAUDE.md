@@ -28,6 +28,7 @@ Website van Gladvisor B.V. (Glenn Snel, freelance SEO-specialist). Astro 7, Type
 - Content staat in `src/content/` en `src/data/site.yaml`, gevalideerd door `src/content.config.ts`.
 - Haal content op met `getPublished()` uit `src/lib/content.ts`, niet met `getCollection()`, zodat drafts niet worden gebouwd.
 - Een `reference()` naar een entry die niet bestaat laat de build falen via `scripts/sync-strict.mjs`. Haal die stap niet uit het build-script.
+- `pillar` (blog) en `services` (cases) moeten naar een service van type pijler wijzen; `scripts/check-pillars.mjs` controleert dat na de sync.
 - URL's: kleine letters, koppeltekens, altijd een afsluitende slash.
 
 ## Inhoudelijke afspraken

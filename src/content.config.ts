@@ -50,14 +50,18 @@ const services = defineCollection({
       pillar: reference('services').optional(),
       hero: z.object({
         statement: z.string().min(1),
-        audience: z.string().min(1),
+        audience: z.string().min(1).optional(),
         ctaPrimary: link,
       }),
       proof: z
         .array(
           z.union([
             reference('cases'),
-            z.object({ label: z.string().min(1), value: z.string().min(1) }),
+            z.object({
+              label: z.string().min(1),
+              value: z.string().min(1),
+              source: z.string().min(1).optional(),
+            }),
           ]),
         )
         .default([]),
@@ -89,6 +93,8 @@ const cases = defineCollection({
   loader: markdown('cases'),
   schema: z.object({
     ...seo,
+    // De kop is het resultaat, niet de klantnaam.
+    h1: z.string().min(1),
     client: z.string().min(1),
     sector: z.string().min(1),
     role: z.string().min(1),
@@ -130,6 +136,7 @@ const pages = defineCollection({
   schema: z.object({
     ...seo,
     h1: z.string().min(1),
+    lead: z.string().min(1).optional(),
   }),
 });
 
@@ -152,6 +159,7 @@ const site = defineCollection({
       telefoon: z.string().min(1),
       linkedin: z.url(),
     }),
+    kvk: z.string().regex(/^\d{8}$/, 'kvk moet uit 8 cijfers bestaan'),
     werkgebied: z.string().min(1),
     entryOffers: z.object({
       'seo-quickscan': z.object({ titel: z.string().min(1), omschrijving: z.string().min(1) }),

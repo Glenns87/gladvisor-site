@@ -13,7 +13,7 @@
   --ink: #111111;         /* koppen, knoppen, links */
   --text: #1F1F1F;        /* lopende tekst */
   --muted: #6E6E6E;       /* eyebrows, subteksten */
-  --muted-warm: #8C8474;  /* metadata */
+  --muted-warm: #8C8474;  /* alleen grotere tekst of decoratie; kleine tekst in --muted */
   --gold: #C9A227;        /* nummers, accentstreepjes, grote cijfers; nooit voor kleine tekst of links */
   --gold-logo: #C9A050;   /* logo-vierkantje */
   --gold-ghost: #EBE2CC;  /* ghost-cijfers achter secties */

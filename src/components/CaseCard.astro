@@ -1,0 +1,63 @@
+---
+// Hairline boven, klant en sector als eyebrow, resultaat groot in goud,
+// één zin en een link naar de case. Geen schaduw.
+interface Props {
+  client: string;
+  sector: string;
+  result: { value: string; metric: string; context: string };
+  href: string;
+  level?: 2 | 3;
+}
+
+const { client, sector, result, href, level = 3 } = Astro.props;
+const Heading = `h${level}` as 'h2' | 'h3';
+---
+
+<article class="case-card">
+  <p class="eyebrow">{client} · {sector}</p>
+  <Heading class="case-card__result">
+    <span class="case-card__value">{result.value}</span>
+    <span class="case-card__metric">{result.metric}</span>
+  </Heading>
+  <p class="case-card__context">{result.context}</p>
+  <a href={href}>
+    Lees de case<span class="visually-hidden"> {client}</span>
+  </a>
+</article>
+
+<style>
+  .case-card {
+    display: grid;
+    align-content: start;
+    justify-items: start;
+    gap: var(--space-1);
+    padding-top: var(--space-3);
+    border-top: var(--hairline);
+  }
+
+  /* In een raster direct onder een sectiekop vervangt diens hairline die van de kaart. */
+  :global(:is(.section-header, .section-divider) + *) > .case-card {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .case-card__result {
+    display: grid;
+    gap: 4px;
+    margin-top: var(--space-1);
+  }
+
+  .case-card__value {
+    color: var(--gold);
+    font-size: 48px;
+    line-height: 1;
+  }
+
+  .case-card__metric {
+    font-size: var(--fs-h3);
+  }
+
+  .case-card__context {
+    margin-bottom: var(--space-1);
+  }
+</style>

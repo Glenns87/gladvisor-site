@@ -1,0 +1,121 @@
+---
+import Button from './Button.astro';
+
+// Desktop tweekoloms: links eyebrow, H1, lead, primaire CTA en een tekstlink
+// naar het instapproduct; rechts een portret (ca. 40%, 4:5). Op mobiel staat
+// het portret kleiner onder de knoppen. Zonder src toont het portret een
+// neutrale placeholder tot de foto er is.
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  cta?: { label: string; href: string };
+  secondary?: { label: string; href: string };
+  portrait?: { src?: string; alt: string } | false;
+}
+
+const {
+  eyebrow,
+  title,
+  lead,
+  cta,
+  secondary,
+  portrait = { alt: 'Portret van Glenn Snel' },
+} = Astro.props;
+---
+
+<section class:list={['hero container', { 'hero--portrait': portrait }]}>
+  <div class="hero__text">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1>{title}</h1>
+    {lead && <p class="lead hero__lead">{lead}</p>}
+    {
+      (cta || secondary) && (
+        <div class="hero__actions">
+          {cta && <Button href={cta.href}>{cta.label}</Button>}
+          {secondary && <a href={secondary.href}>{secondary.label}</a>}
+        </div>
+      )
+    }
+  </div>
+  {
+    portrait && (
+      <div class="hero__portrait">
+        {portrait.src ? (
+          <img src={portrait.src} alt={portrait.alt} width="800" height="1000" />
+        ) : (
+          <div class="hero__placeholder" role="img" aria-label={portrait.alt} />
+        )}
+      </div>
+    )
+  }
+</section>
+
+<style>
+  .hero {
+    display: grid;
+    gap: var(--space-5);
+    padding-block: var(--space-5) var(--space-2);
+  }
+
+  .hero__text {
+    display: grid;
+    justify-items: start;
+    align-content: center;
+    gap: var(--space-2);
+  }
+
+  .hero h1 {
+    max-width: 18em;
+  }
+
+  .hero__lead {
+    max-width: var(--measure);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  .hero__portrait {
+    width: 60%;
+    max-width: 240px;
+  }
+
+  .hero__portrait img,
+  .hero__placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .hero__placeholder {
+    background: var(--bg-soft);
+    border: var(--hairline);
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      padding-block: var(--space-7) var(--space-3);
+    }
+
+    .hero__text {
+      gap: var(--space-3);
+    }
+
+    .hero--portrait {
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      align-items: center;
+      gap: var(--space-6);
+    }
+
+    .hero__portrait {
+      width: 100%;
+      max-width: none;
+    }
+  }
+</style>

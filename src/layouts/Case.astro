@@ -1,0 +1,174 @@
+---
+import { getEntries, render, type CollectionEntry } from 'astro:content';
+import Base from './Base.astro';
+import Button from '../components/Button.astro';
+import { pillarLabel, servicePath } from '../lib/nav';
+
+// Klantcase: klant en sector als eyebrow, het resultaat als kop en groot
+// cijfer, feiten in een hairline-lijst,
+// daarna de tekst uit markdown en eventueel een quote.
+interface Props {
+  entry: CollectionEntry<'cases'>;
+}
+
+const { entry } = Astro.props;
+const data = entry.data;
+const { Content } = await render(entry);
+const services = await getEntries(data.services);
+---
+
+<Base title={data.title} description={data.description} noindex={data.noindex}>
+  <article>
+    <header class="container case__header">
+      <p class="eyebrow">{data.client} · {data.sector}</p>
+      <h1>{data.h1}</h1>
+      <p class="case__result">
+        <span class="case__value">{data.result.value}</span>
+        <span class="case__metric">{data.result.metric}</span>
+      </p>
+      <p class="lead case__context">{data.result.context}</p>
+
+      <dl class="case__facts">
+        <div>
+          <dt class="eyebrow">Rol</dt>
+          <dd>{data.role}</dd>
+        </div>
+        <div>
+          <dt class="eyebrow">Periode</dt>
+          <dd>{data.period}</dd>
+        </div>
+        <div>
+          <dt class="eyebrow">Diensten</dt>
+          <dd>
+            {
+              services.map((service, index) => (
+                <>
+                  {index > 0 && ', '}
+                  <a href={servicePath(service.id)}>{pillarLabel(service.id)}</a>
+                </>
+              ))
+            }
+          </dd>
+        </div>
+      </dl>
+    </header>
+
+    <div class="container section">
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+
+    {
+      data.quote && (
+        <div class="container section">
+          <figure class="case__quote">
+            <blockquote>
+              <p>{data.quote.text}</p>
+            </blockquote>
+            <figcaption class="small">
+              {data.quote.name}, {data.quote.role}
+            </figcaption>
+          </figure>
+        </div>
+      )
+    }
+
+    <div class="container section case__cta">
+      <Button href="/contact/">Plan een kennismaking</Button>
+      <a href="/cases/">Alle cases</a>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .case__header {
+    display: grid;
+    gap: var(--space-2);
+    padding-top: var(--space-5);
+  }
+
+  .case__header h1 {
+    max-width: 18em;
+  }
+
+  .case__result {
+    display: grid;
+    gap: 4px;
+    margin-top: var(--space-2);
+  }
+
+  .case__value {
+    color: var(--gold);
+    font-size: 64px;
+    font-weight: var(--weight-bold);
+    line-height: 1;
+  }
+
+  .case__metric {
+    color: var(--ink);
+    font-size: var(--fs-h3);
+    font-weight: var(--weight-bold);
+  }
+
+  .case__context {
+    max-width: var(--measure);
+  }
+
+  .case__facts {
+    display: grid;
+    margin-top: var(--space-3);
+    border-top: var(--hairline);
+  }
+
+  .case__facts > div {
+    display: grid;
+    gap: 4px;
+    padding-block: var(--space-2);
+    border-bottom: var(--hairline);
+  }
+
+  .case__facts dd {
+    margin: 0;
+  }
+
+  .case__quote {
+    display: grid;
+    gap: var(--space-2);
+    max-width: var(--measure);
+    padding-left: var(--space-3);
+    border-left: 3px solid var(--gold);
+  }
+
+  .case__quote blockquote {
+    margin: 0;
+    color: var(--ink);
+    font-size: var(--fs-lead);
+  }
+
+  .case__quote figcaption {
+    color: var(--muted);
+  }
+
+  .case__cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+  }
+
+  @media (min-width: 768px) {
+    .case__header {
+      padding-top: var(--space-7);
+    }
+
+    .case__value {
+      font-size: 88px;
+    }
+
+    .case__facts {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: var(--space-4);
+    }
+  }
+</style>

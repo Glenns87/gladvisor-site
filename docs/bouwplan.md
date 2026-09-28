@@ -32,7 +32,7 @@ Regel: commerciële subonderwerpen onder de pijler, informationele in /blog/ met
 | /cases/ en /cases/<naam>/ | bewijs | – | ja |
 | /over/, /contact/, /privacy/ | vast | – | ja |
 
-Cases bij launch: fortune-coffee, horloge-nl, rcn. Logostrip: MediaMarkt, Fingerspitz, Alpine, Rinkel, Bamigo.
+Cases bij launch: fortune-coffee, horloge-nl, rcn. Logostrip (in deze volgorde): MediaMarkt, Horloge.nl, RCN, Fortune Coffee, Alpine, Bamigo. Fingerspitz, Rinkel en KPN staan op visible: false.
 
 Instapproducten (secundaire conversie): seo-quickscan (op /seo/), page-review (op /cro/), ai-check (op /ai-zichtbaarheid/).
 
@@ -40,7 +40,7 @@ Instapproducten (secundaire conversie): seo-quickscan (op /seo/), page-review (o
 
 ### Stap 1: contentmodel
 
-Collecties in src/content.config.ts met zod. De build moet falen bij een te lange title, een ontbrekend verplicht veld of een verwijzing naar iets dat niet bestaat (gebruik reference()).
+Collecties in src/content.config.ts met zod. De build moet falen bij een te lange title, een ontbrekend verplicht veld of een verwijzing naar iets dat niet bestaat (gebruik reference()). Ook faalt de build als pillar (blog) of services (cases) naar een service verwijst die geen pijler is.
 
 | Collectie | Map | Inhoud |
 | --- | --- | --- |
@@ -52,7 +52,7 @@ Collecties in src/content.config.ts met zod. De build moet falen bij een te lang
 
 Gedeelde SEO-velden (alle collecties):
 
-- title: verplicht, max. 60 tekens
+- title: verplicht, max. 60 tekens, patroon 'onderwerp | Gladvisor'
 - description: verplicht, max. 155 tekens
 - noindex: standaard false
 - ogImage: optioneel
@@ -64,16 +64,17 @@ services:
 - h1, focusKeyword, secondaryKeywords
 - type: 'pijler' | 'sub'
 - pillar: reference naar services (verplicht bij sub)
-- hero: statement, audience, ctaPrimary { label, href }
-- proof: lijst van reference naar cases en/of { label, value }
+- hero: statement (de lead, inclusief doelgroep), audience (optioneel, wordt niet los getoond), ctaPrimary { label, href }; label in de hero: 'Plan een kennismaking'
+- proof: lijst van reference naar cases en/of { label, value, source (optioneel) }
 - softConversion: { label, description, formType: 'seo-quickscan' | 'page-review' | 'ai-check' }
 - faq: lijst van { q, a } (voedt FAQPage-schema)
 - related: lijst van reference naar services of blog
 
 cases:
 
+- h1: verplicht; de kop is het resultaat, niet de klantnaam (bijv. 'Websitemigratie naar Shopware zonder SEO-verlies'). Klantnaam en sector staan in de eyebrow.
 - client, sector, role, period
-- services: lijst van reference naar pijlers
+- services: lijst van reference naar services van type pijler
 - result: { metric, value, context }
 - quote: { text, name, role } (optioneel)
 - logo, featured, order
@@ -81,17 +82,18 @@ cases:
 blog:
 
 - h1, focusKeyword
-- pillar: verplichte reference naar een pijler
+- pillar: verplichte reference naar een service van type pijler
 - publishDate, updatedDate, author (standaard 'Glenn Snel')
 
 pages:
 
-- h1; secties vrij in markdown. Home krijgt een eigen template dat services, cases en logo's uit de andere collecties haalt.
+- h1, lead (optioneel; op home de subregel); secties vrij in markdown. Home krijgt een eigen template dat services, cases en logo's uit de andere collecties haalt.
 
 site.yaml:
 
 - logos: { name, file, visible } (KPN: visible false)
 - contact: mail, telefoon, LinkedIn
+- kvk: KvK-nummer (8 cijfers), voor de footer
 - werkgebied: tekst zoals onder Context
 - entryOffers: seo-quickscan, page-review, ai-check, elk met titel en korte omschrijving
 
@@ -112,7 +114,7 @@ Kleurtokens (src/styles/tokens.css, op :root):
 | --ink | #111111 | koppen, knoppen, links |
 | --text | #1F1F1F | lopende tekst |
 | --muted | #6E6E6E | eyebrows, subteksten |
-| --muted-warm | #8C8474 | metadata |
+| --muted-warm | #8C8474 | alleen grotere tekst of decoratie; kleine tekst en metadata in --muted (contrast) |
 | --gold | #C9A227 | nummers, accentstreepjes, grote cijfers |
 | --gold-logo | #C9A050 | logo-vierkantje |
 | --gold-ghost | #EBE2CC | ghost-cijfers achter secties |
@@ -125,7 +127,9 @@ Contrast: goud nooit voor kleine lopende tekst of links. Links en knoptekst in -
 Typografie:
 
 - font-family: Arial, Helvetica, sans-serif; geen webfonts
-- Desktop (mobiel ca. 80%): H1 44px bold, H2 28px bold, H3 18px bold, lead 20px, body 17px regelhoogte 1.6, klein 14px
+- Desktop: H1 44px bold, H2 28px bold, H3 18px bold, lead 20px, body 17px regelhoogte 1.6, klein 14px
+- Mobiel (onder 768px): H1 35px, H2 22px, H3 18px, lead 16px, body 17px, klein 14px
+- Breakpoint: 768px; mobiel eerst, desktopwaarden vanaf min-width 768px
 - Eyebrow: 12px, hoofdletters, letter-spacing 0.2em, --muted, bijv. 'DIENST · SEO'
 - Lopende tekst max-width 680px
 
@@ -140,8 +144,8 @@ Basiscomponenten:
 | Component | Opbouw |
 | --- | --- |
 | Header | goud vierkantje + 'Gladvisor' bold links; navigatie rechts (SEO, CRO, AI-zichtbaarheid, Cases, Over); knop 'Kennismaken' |
-| Hero | eyebrow, H1, lead, kort goud streepje, primaire CTA + tekstlink naar instapproduct |
-| ProofBar | --bg-soft vlak, 3 cijfers groot in goud met label eronder, logostrip in grijs |
+| Hero | desktop tweekoloms: links eyebrow, H1, lead (met doelgroep), primaire CTA 'Plan een kennismaking' + tekstlink naar instapproduct; rechts portret op ca. 40% breedte, beeldverhouding 4:5. Mobiel: portret kleiner onder de knoppen. Tot de foto er is: placeholder in --bg-soft met hairline-rand, alt 'Portret van Glenn Snel' |
+| ProofBar | --bg-soft vlak, 3 cijfers groot in goud met label eronder en optioneel een bron als kleine regel in --muted; logostrip in grijs (zonder logobestand: naam in --muted, regular) |
 | SectionHeader | eyebrow, H2, hairline over de contentbreedte |
 | NumberedRow | hairline, goud nummer 01/02/03, titel bold, omschrijving --muted; mobiel gestapeld |
 | SectionDivider | groot ghost-cijfer in --gold-ghost achter de H2 (alleen pijlers en home) |
@@ -149,7 +153,7 @@ Basiscomponenten:
 | Table | koprij bold, hairlines, geen gekleurde vlakken, horizontaal scrollen op mobiel |
 | Faq | details/summary, hairline tussen vragen, plusteken in goud |
 | EntryOffer | --bg-soft vlak, titel, twee regels uitleg, knop; formType uit het contentmodel |
-| Button | primair: --ink vlak met crème tekst; secundair: rand --ink; hover: gouden onderrand |
+| Button | primaire CTA overal 'Plan een kennismaking', alleen de header 'Kennismaken'; primair: --ink vlak met crème tekst; secundair: rand --ink; hover: gouden onderrand |
 | Footer | hairline, logo, contact, werkgebied, KvK, links; klein en --muted |
 
 Geen dark mode in de eerste versie. Geen stockfoto's.
@@ -216,7 +220,7 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 
 ### /seo/
 
-- Title: SEO-specialist | strategie én uitvoering, freelance | Gladvisor
+- Title: SEO-specialist, strategie én uitvoering | Gladvisor
 - Meta: Freelance SEO-specialist voor e-commerce en B2B. Strategie en uitvoering in één hand, gestuurd op omzet en relevant verkeer.
 - H1: SEO-specialist die strategie en uitvoering niet scheidt
 - Hero, proof bar (13+ jaar, +18% na migratie, 2x nominatie Website van het Jaar, logostrip)
@@ -229,21 +233,21 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 
 ### /seo/website-migratie/
 
-- Title: SEO bij een websitemigratie | zonder verkeersverlies overstappen | Gladvisor
+- Title: SEO bij websitemigratie: zonder verkeersverlies | Gladvisor
 - H1: SEO bij een websitemigratie: overstappen zonder je verkeer te verliezen
 - H2's: waarom migraties verkeer kosten; aanpak in vier fases; case Fortune Coffee; wanneer je mij erbij haalt
 - Schema: Service, FAQPage
 
 ### /seo/seo-audit/
 
-- Title: SEO-audit | techniek, content en AI-zichtbaarheid in één rapport | Gladvisor
+- Title: SEO-audit: techniek, content en AI-zichtbaarheid | Gladvisor
 - H1: SEO-audit: weten waar je staat en wat als eerste moet
 - H2's: wat ik onderzoek; wat je krijgt; voor wie; voorbeeld
 - Schema: Service
 
 ### /cro/
 
-- Title: Conversie optimalisatie (CRO) | analyse, verbeteren en meten | Gladvisor
+- Title: CRO-specialist: conversie optimalisatie | Gladvisor
 - H1: Conversie optimalisatie: meer omzet uit het verkeer dat je al hebt
 - H2's: herken je dit; mijn aanpak (CRO-analyse, expert review op vaste principes plus concurrentievergelijking, verbeteren en meten); waarom ik niet met A/B-testen begin; CRO en SEO in één hand; voorbeeld uit de praktijk
 - FAQ (4), instapproduct page-review
@@ -251,7 +255,7 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 
 ### /ai-zichtbaarheid/
 
-- Title: AI-zichtbaarheid (GEO) | zichtbaar in ChatGPT en AI Overviews | Gladvisor
+- Title: AI-zichtbaarheid (GEO): ChatGPT en AI Overviews | Gladvisor
 - H1: AI-zichtbaarheid: zichtbaar worden in ChatGPT, AI Overviews en Perplexity
 - H2's: herken je dit; wat AI-zichtbaarheid wel en niet is; mijn aanpak (quickscan, content, off-site, meetopzet); wat je niet nodig hebt; eerlijk over de stand van zaken; onderdeel van SEO, ook los af te nemen
 - FAQ (4), instapproduct ai-check
@@ -259,7 +263,7 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 
 ### /over/
 
-- Title: Over Glenn Snel | freelance SEO-specialist, Gladvisor B.V.
+- Title: Over Glenn Snel, freelance SEO-specialist | Gladvisor
 - H1: Ik begin bij je business, niet bij je website
 - Opbouw why → hoe → wat: overtuiging; hoe ik werk; achtergrond; wat je van mij mag verwachten
 - Tekst staat klaar in src/content/pages/over.md
@@ -267,7 +271,7 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 
 ### Home
 
-- Title: Gladvisor | SEO-specialist, strategie én uitvoering | Glenn Snel
+- Title: Glenn Snel | freelance SEO-specialist | Gladvisor
 - H1: Meer omzet uit organisch verkeer, met een plan én iemand die het uitvoert
 - Subregel: Freelance SEO-specialist voor e-commerce en B2B, met CRO en AI-zichtbaarheid als verlengstuk
 - Blokken: diensten (drie), bewijs, voor wie, hoe ik werk, logostrip, CTA kennismaking

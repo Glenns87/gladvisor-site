@@ -1,0 +1,16 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/wat/seo/", "destination": "/seo/", "permanent": true },
+    { "source": "/wat/cro/", "destination": "/cro/", "permanent": true },
+    { "source": "/wat/", "destination": "/seo/", "permanent": true },
+    { "source": "/wat/online-marketing/", "destination": "/seo/", "permanent": true },
+    { "source": "/wat/e-commerce/", "destination": "/cro/", "permanent": true },
+    { "source": "/portfolio/", "destination": "/cases/", "permanent": true },
+    { "source": "/waarom/", "destination": "/over/", "permanent": true },
+    { "source": "/hoe/", "destination": "/over/", "permanent": true },
+    { "source": "/cookieverklaring/", "destination": "/privacy/", "permanent": true },
+    { "source": "/feed/", "destination": "/blog/", "permanent": true }
+  ]
+}

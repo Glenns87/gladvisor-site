@@ -72,6 +72,7 @@ services:
 
 cases:
 
+- h1: verplicht; de kop is het resultaat, niet de klantnaam (bijv. 'Websitemigratie naar Shopware zonder SEO-verlies'). Klantnaam en sector staan in de eyebrow.
 - client, sector, role, period
 - services: lijst van reference naar services van type pijler
 - result: { metric, value, context }
@@ -86,7 +87,7 @@ blog:
 
 pages:
 
-- h1; secties vrij in markdown. Home krijgt een eigen template dat services, cases en logo's uit de andere collecties haalt.
+- h1, lead (optioneel; op home de subregel); secties vrij in markdown. Home krijgt een eigen template dat services, cases en logo's uit de andere collecties haalt.
 
 site.yaml:
 
@@ -113,7 +114,7 @@ Kleurtokens (src/styles/tokens.css, op :root):
 | --ink | #111111 | koppen, knoppen, links |
 | --text | #1F1F1F | lopende tekst |
 | --muted | #6E6E6E | eyebrows, subteksten |
-| --muted-warm | #8C8474 | metadata |
+| --muted-warm | #8C8474 | alleen grotere tekst of decoratie; kleine tekst en metadata in --muted (contrast) |
 | --gold | #C9A227 | nummers, accentstreepjes, grote cijfers |
 | --gold-logo | #C9A050 | logo-vierkantje |
 | --gold-ghost | #EBE2CC | ghost-cijfers achter secties |
@@ -152,7 +153,7 @@ Basiscomponenten:
 | Table | koprij bold, hairlines, geen gekleurde vlakken, horizontaal scrollen op mobiel |
 | Faq | details/summary, hairline tussen vragen, plusteken in goud |
 | EntryOffer | --bg-soft vlak, titel, twee regels uitleg, knop; formType uit het contentmodel |
-| Button | primair: --ink vlak met crème tekst; secundair: rand --ink; hover: gouden onderrand |
+| Button | primaire CTA overal 'Plan een kennismaking', alleen de header 'Kennismaken'; primair: --ink vlak met crème tekst; secundair: rand --ink; hover: gouden onderrand |
 | Footer | hairline, logo, contact, werkgebied, KvK, links; klein en --muted |
 
 Geen dark mode in de eerste versie. Geen stockfoto's.
@@ -262,7 +263,7 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 
 ### /over/
 
-- Title: Over Glenn Snel | freelance SEO-specialist, Gladvisor B.V.
+- Title: Over Glenn Snel, freelance SEO-specialist | Gladvisor
 - H1: Ik begin bij je business, niet bij je website
 - Opbouw why → hoe → wat: overtuiging; hoe ik werk; achtergrond; wat je van mij mag verwachten
 - Tekst staat klaar in src/content/pages/over.md

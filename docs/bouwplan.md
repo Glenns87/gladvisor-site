@@ -87,7 +87,7 @@ blog:
 
 pages:
 
-- h1, lead (optioneel; op home de subregel); secties vrij in markdown. Home krijgt een eigen template dat services, cases en logo's uit de andere collecties haalt.
+- h1, eyebrow (optioneel), lead (optioneel; op home de subregel), proof (optioneel, max. 3 × { value, label, source }; op home de cijfers in de proof bar); secties vrij in markdown. Home krijgt een eigen template dat services, cases en logo's uit de andere collecties haalt.
 
 site.yaml:
 
@@ -275,7 +275,10 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 
 - Title: Glenn Snel | freelance SEO-specialist | Gladvisor
 - H1: Meer omzet uit organisch verkeer, met een plan én iemand die het uitvoert
-- Subregel: Freelance SEO-specialist voor e-commerce en B2B, met CRO en AI-zichtbaarheid als verlengstuk
+- Eyebrow: Freelance SEO-specialist
+- Subregel (lead): Freelance SEO-specialist voor e-commerce en B2B, met CRO en AI-zichtbaarheid als verlengstuk.
+- Proof bar: 13+ jaar ervaring in SEO (klant-, bureau- en freelancekant); +18% organisch verkeer na Shopware-migratie (Fortune Coffee); 2x nominatie Website van het Jaar (RCN)
+- Hero: primaire CTA Plan een kennismaking, secundaire link Bekijk een case
 - Blokken: diensten (drie), bewijs, voor wie, hoe ik werk, logostrip, CTA kennismaking
 - Schema: Organization, Person, WebSite
 

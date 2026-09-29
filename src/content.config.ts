@@ -33,6 +33,13 @@ const link = z.object({
   href: z.string().min(1),
 });
 
+// Een cijfer in de ProofBar, met optioneel een bron.
+const proofItem = z.object({
+  label: z.string().min(1),
+  value: z.string().min(1),
+  source: z.string().min(1).optional(),
+});
+
 const formType = z.enum(['seo-quickscan', 'page-review', 'ai-check']);
 
 const markdown = (dir: string) =>
@@ -57,11 +64,7 @@ const services = defineCollection({
         .array(
           z.union([
             reference('cases'),
-            z.object({
-              label: z.string().min(1),
-              value: z.string().min(1),
-              source: z.string().min(1).optional(),
-            }),
+            proofItem,
           ]),
         )
         .default([]),
@@ -136,7 +139,9 @@ const pages = defineCollection({
   schema: z.object({
     ...seo,
     h1: z.string().min(1),
+    eyebrow: z.string().min(1).optional(),
     lead: z.string().min(1).optional(),
+    proof: z.array(proofItem).max(3).default([]),
   }),
 });
 

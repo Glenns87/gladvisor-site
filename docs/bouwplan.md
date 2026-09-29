@@ -92,8 +92,8 @@ pages:
 site.yaml:
 
 - logos: { name, file, visible } (KPN: visible false)
-- contact: mail, telefoon, LinkedIn
-- kvk: KvK-nummer (8 cijfers), voor de footer
+- contact: mail (glenn@gladvisor.nl, het enige contactgegeven op de site); linkedin optioneel en pas getoond als ingevuld; geen telefoonnummer
+- kvk: 93742193, voor de footer en Organization-schema
 - werkgebied: tekst zoals onder Context
 - entryOffers: seo-quickscan, page-review, ai-check, elk met titel en korte omschrijving
 

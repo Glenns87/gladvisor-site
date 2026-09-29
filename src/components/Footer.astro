@@ -4,7 +4,6 @@ import { getSite } from '../lib/site';
 
 const site = await getSite();
 const year = new Date().getFullYear();
-const tel = site.contact.telefoon.replace(/[^\d+]/g, '');
 
 const links = [
   { label: 'Cases', href: '/cases/' },
@@ -25,8 +24,13 @@ const links = [
       <h2 class="eyebrow">Contact</h2>
       <ul>
         <li><a href={`mailto:${site.contact.mail}`}>{site.contact.mail}</a></li>
-        <li><a href={`tel:${tel}`}>{site.contact.telefoon}</a></li>
-        <li><a href={site.contact.linkedin}>LinkedIn</a></li>
+        {
+          site.contact.linkedin && (
+            <li>
+              <a href={site.contact.linkedin}>LinkedIn</a>
+            </li>
+          )
+        }
       </ul>
     </div>
     <nav aria-label="Footer">

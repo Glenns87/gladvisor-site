@@ -156,8 +156,8 @@ const site = defineCollection({
     ),
     contact: z.object({
       mail: z.email(),
-      telefoon: z.string().min(1),
-      linkedin: z.url(),
+      // Geen telefoonnummer op de site. LinkedIn alleen tonen als ingevuld.
+      linkedin: z.url().optional(),
     }),
     kvk: z.string().regex(/^\d{8}$/, 'kvk moet uit 8 cijfers bestaan'),
     werkgebied: z.string().min(1),

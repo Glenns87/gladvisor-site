@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import NumberedRow from '../components/NumberedRow.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+
+// 404 in huisstijl met links naar de drie pijlers en contact.
+// Geen canonical en niet in de sitemap.
+const pillars = [
+  { title: 'SEO', href: '/seo/', description: 'Strategie en uitvoering in één hand, gestuurd op omzet en relevant verkeer.' },
+  { title: 'CRO', href: '/cro/', description: 'Meer omzet uit het verkeer dat je al hebt.' },
+  {
+    title: 'AI-zichtbaarheid',
+    href: '/ai-zichtbaarheid/',
+    description: 'Zichtbaar worden in ChatGPT, AI Overviews en Perplexity.',
+  },
+];
+---
+
+<Base
+  title="Pagina niet gevonden | Gladvisor"
+  description="Deze pagina bestaat niet (meer). Ga verder bij SEO, CRO, AI-zichtbaarheid of neem contact op."
+  noindex
+  canonical={false}
+>
+  <section class="container not-found">
+    <p class="eyebrow">Fout 404</p>
+    <h1>Deze pagina bestaat niet (meer)</h1>
+    <p class="lead not-found__lead">
+      Misschien is de pagina verhuisd of klopt de link niet. Hieronder vind je de belangrijkste onderwerpen.
+    </p>
+  </section>
+
+  <section class="container section" aria-labelledby="verder">
+    <SectionHeader eyebrow="Verder kijken" title="Waar ik je mee help" id="verder" />
+    {
+      pillars.map((pillar, index) => (
+        <NumberedRow number={index + 1} title={pillar.title} description={pillar.description} href={pillar.href} />
+      ))
+    }
+  </section>
+
+  <div class="container section">
+    <Button href="/contact/">Plan een kennismaking</Button>
+  </div>
+</Base>
+
+<style>
+  .not-found {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-2);
+    padding-top: var(--space-5);
+  }
+
+  .not-found__lead {
+    max-width: var(--measure);
+  }
+
+  @media (min-width: 768px) {
+    .not-found {
+      gap: var(--space-3);
+      padding-top: var(--space-7);
+    }
+  }
+</style>

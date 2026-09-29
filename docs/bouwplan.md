@@ -167,7 +167,8 @@ gladvisor-site/
 ├── public/
 │   ├── robots.txt
 │   ├── favicon.svg         goud vierkantje
-│   ├── og-default.png
+│   ├── og-default.png      1200x630, gegenereerd met scripts/og-images.mjs
+│   ├── logo.png            512x512, logo voor Organization-schema
 │   └── logos/
 ├── src/
 │   ├── content.config.ts
@@ -206,10 +207,11 @@ Oude WordPress-pagina's /hello-world/, /author/glenn/ en /category/uncategorized
 
 SEO-basis in de Base-layout:
 
-- title, description, canonical (eigen URL met slash), Open Graph, noindex uit frontmatter
-- @astrojs/sitemap, zonder noindex-pagina's, /stijlgids/ en 404
+- title, description, canonical (eigen URL met slash), Open Graph, Twitter-tags, noindex uit frontmatter; standaard og-image /og-default.png, per pagina te vervangen met ogImage
+- @astrojs/sitemap, zonder noindex-pagina's, /stijlgids/ en 404 (filter in astro.config.mjs)
 - robots.txt: alles toegestaan, ook AI-zoekcrawlers (o.a. OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot) en trainingscrawlers (o.a. GPTBot, ClaudeBot, Google-Extended); verwijzing naar de sitemap; user-agentnamen verifiëren
-- JSON-LD via één Schema-component: Organization + Person + WebSite (home), Service (diensten), FAQPage (waar een FAQ staat), Article (blog), BreadcrumbList (alle pagina's behalve home)
+- JSON-LD via één Schema-component: Organization + Person + WebSite (home), Service (diensten), FAQPage (waar een FAQ staat), Article (blog), BreadcrumbList (alle pagina's behalve home). Het schema-veld in de frontmatter voegt typen toe (bijv. Person op /seo/). Organization bevat e-mail en KvK, geen telefoonnummer
+- Na de build controleert scripts/check-dist.mjs sitemap, canonicals, JSON-LD, één h1 per pagina en dat er geen scripts in de HTML staan
 - Alle content server-side gerenderd; niets dat alleen via JavaScript laadt
 - 404-pagina in huisstijl met links naar de drie pijlers en contact
 - Afbeeldingen via Astro's image-component

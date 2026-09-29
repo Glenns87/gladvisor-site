@@ -162,7 +162,7 @@ Geen dark mode in de eerste versie. Geen stockfoto's.
 
 ```
 gladvisor-site/
-├── astro.config.mjs        site: https://gladvisor.nl, trailingSlash: 'always', sitemap
+├── astro.config.mjs        site: https://www.gladvisor.nl, trailingSlash: 'always', sitemap
 ├── vercel.json             redirects en trailingSlash: true
 ├── public/
 │   ├── robots.txt
@@ -186,7 +186,7 @@ gladvisor-site/
 └── CLAUDE.md
 ```
 
-URL-conventie: kleine letters, koppeltekens, altijd afsluitende slash.
+URL-conventie: kleine letters, koppeltekens, altijd afsluitende slash. Primair domein: https://www.gladvisor.nl (met www) voor canonicals, sitemap, robots.txt, Open Graph en JSON-LD.
 
 Redirects (vercel.json, permanent: true):
 
@@ -209,7 +209,7 @@ SEO-basis in de Base-layout:
 
 - title, description, canonical (eigen URL met slash), Open Graph, Twitter-tags, noindex uit frontmatter; standaard og-image /og-default.png, per pagina te vervangen met ogImage
 - @astrojs/sitemap, zonder noindex-pagina's, /stijlgids/ en 404 (filter in astro.config.mjs)
-- robots.txt: alles toegestaan, ook AI-zoekcrawlers (o.a. OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot) en trainingscrawlers (o.a. GPTBot, ClaudeBot, Google-Extended); verwijzing naar de sitemap; user-agentnamen verifiëren
+- robots.txt: alleen `User-agent: *`, `Allow: /` en `Sitemap: https://www.gladvisor.nl/sitemap-index.xml`. Daarmee zijn ook alle AI-zoek- en trainingscrawlers toegestaan; aparte regels per crawler zijn niet nodig
 - JSON-LD via één Schema-component: Organization + Person + WebSite (home), Service (diensten), FAQPage (waar een FAQ staat), Article (blog), BreadcrumbList (alle pagina's behalve home). Het schema-veld in de frontmatter voegt typen toe (bijv. Person op /seo/). Organization bevat e-mail en KvK, geen telefoonnummer
 - Na de build controleert scripts/check-dist.mjs sitemap, canonicals, JSON-LD, één h1 per pagina en dat er geen scripts in de HTML staan
 - Alle content server-side gerenderd; niets dat alleen via JavaScript laadt
@@ -280,3 +280,8 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 - Schema: Organization, Person, WebSite
 
 De definitieve teksten volgen later; gebruik tot die tijd placeholders die de structuur tonen.
+
+## Livegang
+
+- In Vercel wordt www.gladvisor.nl het primaire domein.
+- gladvisor.nl (zonder www) stuurt permanent (308/301) door naar https://www.gladvisor.nl, met behoud van pad.

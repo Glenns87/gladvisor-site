@@ -32,6 +32,7 @@ Website van Gladvisor B.V. (Glenn Snel, freelance SEO-specialist). Astro 7, Type
 - Na `astro build` controleert `scripts/check-dist.mjs` de sitemap, canonicals, JSON-LD, één h1 per pagina en dat er geen `<script>` anders dan JSON-LD in de HTML staat. Haal die stap niet uit het build-script.
 - JSON-LD alleen via `src/components/Schema.astro` (opbouw in `src/lib/schema.ts`), aangeroepen vanuit de Base-layout.
 - URL's: kleine letters, koppeltekens, altijd een afsluitende slash.
+- Domein: https://www.gladvisor.nl (met www). Absolute URL's komen uit `site` in `astro.config.mjs`; nergens `gladvisor.nl` zonder www hardcoderen.
 
 ## Inhoudelijke afspraken
 

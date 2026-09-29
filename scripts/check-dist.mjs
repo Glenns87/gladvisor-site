@@ -4,22 +4,34 @@
 // - een pagina in de sitemap geen canonical naar zichzelf heeft;
 // - een JSON-LD-blok geen geldige JSON is of verplichte velden mist;
 // - een pagina niet precies één h1 heeft;
-// - er een <script> in de HTML staat anders dan JSON-LD (alles server-side).
+// - er een <script> in de HTML staat anders dan JSON-LD (alles server-side);
+// - er ergens een absolute URL zonder www staat (canonical, Open Graph,
+//   JSON-LD, sitemap, robots.txt). Het primaire domein is www.gladvisor.nl.
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 
 const dist = 'dist';
-const site = 'https://gladvisor.nl';
+const site = 'https://www.gladvisor.nl';
 const errors = [];
 const fail = (message) => errors.push(message);
 
-function htmlFiles(dir) {
+function filesWith(dir, extensions) {
   return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const path = join(dir, entry.name);
-    if (entry.isDirectory()) return htmlFiles(path);
-    return entry.name.endsWith('.html') ? [path] : [];
+    if (entry.isDirectory()) return filesWith(path, extensions);
+    return extensions.some((ext) => entry.name.endsWith(ext)) ? [path] : [];
   });
 }
+const htmlFiles = (dir) => filesWith(dir, ['.html']);
+
+// Domein: overal www, nergens de variant zonder www.
+for (const file of filesWith(dist, ['.html', '.xml', '.txt'])) {
+  if (/https?:\/\/gladvisor\.nl/.test(readFileSync(file, 'utf8'))) {
+    fail(`${relative(dist, file)}: bevat een URL zonder www; gebruik ${site}`);
+  }
+}
+const robots = existsSync(join(dist, 'robots.txt')) ? readFileSync(join(dist, 'robots.txt'), 'utf8') : '';
+if (!robots.includes(`Sitemap: ${site}/sitemap-index.xml`)) fail(`robots.txt verwijst niet naar ${site}/sitemap-index.xml`);
 
 // dist/seo/index.html -> /seo/, dist/404.html -> /404/
 function pathOf(file) {
@@ -33,11 +45,11 @@ const pages = new Map(htmlFiles(dist).map((file) => [pathOf(file), readFileSync(
 // Sitemap
 const sitemapFiles = readdirSync(dist).filter((name) => /^sitemap-\d+\.xml$/.test(name));
 if (!existsSync(join(dist, 'sitemap-index.xml')) || sitemapFiles.length === 0) fail('sitemap ontbreekt');
-const sitemapPaths = new Set(
-  sitemapFiles.flatMap((name) =>
-    [...readFileSync(join(dist, name), 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname),
-  ),
+const sitemapUrls = sitemapFiles.flatMap((name) =>
+  [...readFileSync(join(dist, name), 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]),
 );
+for (const url of sitemapUrls) if (!url.startsWith(`${site}/`)) fail(`sitemap bevat ${url}, verwacht ${site}/...`);
+const sitemapPaths = new Set(sitemapUrls.map((url) => new URL(url).pathname));
 
 const isNoindex = (html) => /<meta name="robots" content="[^"]*noindex/.test(html);
 

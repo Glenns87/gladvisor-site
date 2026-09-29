@@ -1,0 +1,32 @@
+# robots.txt voor gladvisor.nl
+# Alles is toegestaan, ook voor AI-zoek- en trainingscrawlers.
+# Namen geverifieerd in september 2026 bij de documentatie van de aanbieders.
+
+# Zoekmachines
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: Applebot
+Allow: /
+
+# AI-zoeken en opvragingen namens gebruikers
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Allow: /
+
+# Training van AI-modellen
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+Allow: /
+
+# Alle overige crawlers
+User-agent: *
+Allow: /
+
+Sitemap: https://gladvisor.nl/sitemap-index.xml

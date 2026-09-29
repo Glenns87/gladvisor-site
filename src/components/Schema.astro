@@ -1,0 +1,23 @@
+---
+import { buildGraph, type SchemaInput } from '../lib/schema';
+import { getSite } from '../lib/site';
+
+// Eén JSON-LD-blok per pagina met een @graph. Server-side gerenderd.
+interface Props extends SchemaInput {
+  url: URL;
+  title: string;
+  description: string;
+  image: URL;
+}
+
+const site = await getSite();
+const graph = buildGraph({
+  ...Astro.props,
+  site: new URL('/', Astro.site),
+  contact: site.contact,
+  kvk: site.kvk,
+});
+const json = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
+---
+
+{graph.length > 0 && <script type="application/ld+json" is:inline set:html={json} />}

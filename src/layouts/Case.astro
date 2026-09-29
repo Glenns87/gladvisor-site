@@ -2,7 +2,7 @@
 import { getEntries, render, type CollectionEntry } from 'astro:content';
 import Base from './Base.astro';
 import Button from '../components/Button.astro';
-import { pillarLabel, servicePath } from '../lib/nav';
+import { casePath, pillarLabel, servicePath } from '../lib/nav';
 
 // Klantcase: klant en sector als eyebrow, het resultaat als kop en groot
 // cijfer, feiten in een hairline-lijst,
@@ -17,7 +17,20 @@ const { Content } = await render(entry);
 const services = await getEntries(data.services);
 ---
 
-<Base title={data.title} description={data.description} noindex={data.noindex}>
+<Base
+  title={data.title}
+  description={data.description}
+  noindex={data.noindex}
+  ogImage={data.ogImage}
+  schema={{
+    types: ['BreadcrumbList', ...data.schema],
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Cases', path: '/cases/' },
+      { name: data.client, path: casePath(entry.id) },
+    ],
+  }}
+>
   <article>
     <header class="container case__header">
       <p class="eyebrow">{data.client} · {data.sector}</p>

@@ -42,12 +42,32 @@ const related = (
   )
 ).filter((item) => item !== undefined);
 
+// Kruimelpad: Home > pijler (> sub).
+const pillar = data.pillar ? await getEntry(data.pillar) : undefined;
+if (data.pillar && !pillar) throw new Error(`Pijler '${data.pillar.id}' niet gevonden`);
+const breadcrumbs = [
+  { name: 'Home', path: '/' },
+  ...(pillar ? [{ name: pillarLabel(pillar.id), path: servicePath(pillar.id) }] : []),
+  { name: isPillar ? pillarLabel(entry.id) : data.h1, path: servicePath(entry.id) },
+];
+
 const offerId = 'instapproduct';
 let section = 0;
 const Divider = isPillar ? SectionDivider : SectionHeader;
 ---
 
-<Base title={data.title} description={data.description} noindex={data.noindex}>
+<Base
+  title={data.title}
+  description={data.description}
+  noindex={data.noindex}
+  ogImage={data.ogImage}
+  schema={{
+    types: ['Service', 'FAQPage', 'BreadcrumbList', ...data.schema],
+    breadcrumbs,
+    service: { name: data.h1, serviceType: data.focusKeyword },
+    faq: data.faq,
+  }}
+>
   <Hero
     eyebrow={`Dienst · ${pillarLabel(entry.id)}`}
     title={data.h1}

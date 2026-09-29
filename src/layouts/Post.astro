@@ -1,7 +1,7 @@
 ---
 import { getEntry, render, type CollectionEntry } from 'astro:content';
 import Base from './Base.astro';
-import { pillarLabel, servicePath } from '../lib/nav';
+import { blogPath, pillarLabel, servicePath } from '../lib/nav';
 
 // Blogartikel. Onderaan staat altijd een vaste link omhoog naar de pijler.
 interface Props {
@@ -19,7 +19,28 @@ const formatDate = (date: Date) =>
 const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 ---
 
-<Base title={data.title} description={data.description} noindex={data.noindex}>
+<Base
+  title={data.title}
+  description={data.description}
+  noindex={data.noindex}
+  ogImage={data.ogImage}
+  ogType="article"
+  article={{ published: data.publishDate, modified: data.updatedDate }}
+  schema={{
+    types: ['Article', 'BreadcrumbList', ...data.schema],
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog/' },
+      { name: data.h1, path: blogPath(entry.id) },
+    ],
+    article: {
+      headline: data.h1,
+      published: data.publishDate,
+      modified: data.updatedDate,
+      author: data.author,
+    },
+  }}
+>
   <article class="container post">
     <header class="post__header">
       <p class="eyebrow">Blog · {pillarLabel(pillar.id)}</p>

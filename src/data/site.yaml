@@ -1,5 +1,5 @@
 # Gedeelde gegevens voor de hele site. Schema: src/content.config.ts (collectie site).
-# PLACEHOLDER: contactgegevens, KvK-nummer en teksten van de instapproducten nog invullen.
+# PLACEHOLDER: teksten van de instapproducten nog invullen.
 
 logos:
   - name: MediaMarkt
@@ -31,13 +31,13 @@ logos:
     file: /logos/kpn.svg
     visible: false
 
+# E-mail is het enige contactgegeven op de site. Geen telefoonnummer.
+# linkedin is optioneel en wordt pas getoond als het is ingevuld.
 contact:
-  mail: placeholder@gladvisor.nl
-  telefoon: "+31 6 00000000"
-  linkedin: https://www.linkedin.com/
+  mail: glenn@gladvisor.nl
 
 # KvK-nummer van Gladvisor B.V. (8 cijfers).
-kvk: "00000000"
+kvk: "93742193"
 
 werkgebied: Binnen 100 km of een uur reistijd van Nieuwerkerk aan den IJssel, voor de helft op locatie en voor de helft remote.
 

@@ -20,12 +20,22 @@ const pillars = (await getPublished('services')).filter((s) => s.data.type === '
 const cases = (await getPublished('cases'))
   .filter((c) => c.data.featured)
   .sort((a, b) => a.data.order - b.data.order);
-const proof = cases.map((c) => ({ value: c.data.result.value, label: c.data.result.metric, source: c.data.client }));
+// Cijfers uit home.md; zonder proof daar de resultaten van de uitgelichte cases.
+const proof =
+  home.data.proof.length > 0
+    ? home.data.proof
+    : cases.map((c) => ({ value: c.data.result.value, label: c.data.result.metric, source: c.data.client }));
 ---
 
-<Base title={home.data.title} description={home.data.description} noindex={home.data.noindex}>
+<Base
+  title={home.data.title}
+  description={home.data.description}
+  noindex={home.data.noindex}
+  ogImage={home.data.ogImage}
+  schema={{ types: ['Organization', 'Person', 'WebSite', ...home.data.schema] }}
+>
   <Hero
-    eyebrow="Freelance SEO-specialist"
+    eyebrow={home.data.eyebrow}
     title={home.data.h1}
     lead={home.data.lead}
     cta={{ label: 'Plan een kennismaking', href: '/contact/' }}

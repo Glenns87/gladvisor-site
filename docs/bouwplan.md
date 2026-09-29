@@ -87,13 +87,13 @@ blog:
 
 pages:
 
-- h1, lead (optioneel; op home de subregel); secties vrij in markdown. Home krijgt een eigen template dat services, cases en logo's uit de andere collecties haalt.
+- h1, eyebrow (optioneel), lead (optioneel; op home de subregel), proof (optioneel, max. 3 × { value, label, source }; op home de cijfers in de proof bar); secties vrij in markdown. Home krijgt een eigen template dat services, cases en logo's uit de andere collecties haalt.
 
 site.yaml:
 
 - logos: { name, file, visible } (KPN: visible false)
-- contact: mail, telefoon, LinkedIn
-- kvk: KvK-nummer (8 cijfers), voor de footer
+- contact: mail (glenn@gladvisor.nl, het enige contactgegeven op de site); linkedin optioneel en pas getoond als ingevuld; geen telefoonnummer
+- kvk: 93742193, voor de footer en Organization-schema
 - werkgebied: tekst zoals onder Context
 - entryOffers: seo-quickscan, page-review, ai-check, elk met titel en korte omschrijving
 
@@ -162,12 +162,13 @@ Geen dark mode in de eerste versie. Geen stockfoto's.
 
 ```
 gladvisor-site/
-├── astro.config.mjs        site: https://gladvisor.nl, trailingSlash: 'always', sitemap
+├── astro.config.mjs        site: https://www.gladvisor.nl, trailingSlash: 'always', sitemap
 ├── vercel.json             redirects en trailingSlash: true
 ├── public/
 │   ├── robots.txt
 │   ├── favicon.svg         goud vierkantje
-│   ├── og-default.png
+│   ├── og-default.png      1200x630, gegenereerd met scripts/og-images.mjs
+│   ├── logo.png            512x512, logo voor Organization-schema
 │   └── logos/
 ├── src/
 │   ├── content.config.ts
@@ -185,7 +186,7 @@ gladvisor-site/
 └── CLAUDE.md
 ```
 
-URL-conventie: kleine letters, koppeltekens, altijd afsluitende slash.
+URL-conventie: kleine letters, koppeltekens, altijd afsluitende slash. Primair domein: https://www.gladvisor.nl (met www) voor canonicals, sitemap, robots.txt, Open Graph en JSON-LD.
 
 Redirects (vercel.json, permanent: true):
 
@@ -206,10 +207,11 @@ Oude WordPress-pagina's /hello-world/, /author/glenn/ en /category/uncategorized
 
 SEO-basis in de Base-layout:
 
-- title, description, canonical (eigen URL met slash), Open Graph, noindex uit frontmatter
-- @astrojs/sitemap, zonder noindex-pagina's, /stijlgids/ en 404
-- robots.txt: alles toegestaan, ook AI-zoekcrawlers (o.a. OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot) en trainingscrawlers (o.a. GPTBot, ClaudeBot, Google-Extended); verwijzing naar de sitemap; user-agentnamen verifiëren
-- JSON-LD via één Schema-component: Organization + Person + WebSite (home), Service (diensten), FAQPage (waar een FAQ staat), Article (blog), BreadcrumbList (alle pagina's behalve home)
+- title, description, canonical (eigen URL met slash), Open Graph, Twitter-tags, noindex uit frontmatter; standaard og-image /og-default.png, per pagina te vervangen met ogImage
+- @astrojs/sitemap, zonder noindex-pagina's, /stijlgids/ en 404 (filter in astro.config.mjs)
+- robots.txt: alleen `User-agent: *`, `Allow: /` en `Sitemap: https://www.gladvisor.nl/sitemap-index.xml`. Daarmee zijn ook alle AI-zoek- en trainingscrawlers toegestaan; aparte regels per crawler zijn niet nodig
+- JSON-LD via één Schema-component: Organization + Person + WebSite (home), Service (diensten), FAQPage (waar een FAQ staat), Article (blog), BreadcrumbList (alle pagina's behalve home). Het schema-veld in de frontmatter voegt typen toe (bijv. Person op /seo/). Organization bevat e-mail en KvK, geen telefoonnummer
+- Na de build controleert scripts/check-dist.mjs sitemap, canonicals, JSON-LD, één h1 per pagina en dat er geen scripts in de HTML staan
 - Alle content server-side gerenderd; niets dat alleen via JavaScript laadt
 - 404-pagina in huisstijl met links naar de drie pijlers en contact
 - Afbeeldingen via Astro's image-component
@@ -273,8 +275,16 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 
 - Title: Glenn Snel | freelance SEO-specialist | Gladvisor
 - H1: Meer omzet uit organisch verkeer, met een plan én iemand die het uitvoert
-- Subregel: Freelance SEO-specialist voor e-commerce en B2B, met CRO en AI-zichtbaarheid als verlengstuk
+- Eyebrow: Freelance SEO-specialist
+- Subregel (lead): Freelance SEO-specialist voor e-commerce en B2B, met CRO en AI-zichtbaarheid als verlengstuk.
+- Proof bar: 13+ jaar ervaring in SEO (klant-, bureau- en freelancekant); +18% organisch verkeer na Shopware-migratie (Fortune Coffee); 2x nominatie Website van het Jaar (RCN)
+- Hero: primaire CTA Plan een kennismaking, secundaire link Bekijk een case
 - Blokken: diensten (drie), bewijs, voor wie, hoe ik werk, logostrip, CTA kennismaking
 - Schema: Organization, Person, WebSite
 
 De definitieve teksten volgen later; gebruik tot die tijd placeholders die de structuur tonen.
+
+## Livegang
+
+- In Vercel wordt www.gladvisor.nl het primaire domein.
+- gladvisor.nl (zonder www) stuurt permanent (308/301) door naar https://www.gladvisor.nl, met behoud van pad.

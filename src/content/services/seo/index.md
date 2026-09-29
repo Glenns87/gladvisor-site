@@ -15,6 +15,7 @@ proof:
   - fortune-coffee
   - label: jaar ervaring
     value: 13+
+    source: klant-, bureau- en freelancekant
 softConversion:
   label: Placeholder voor het instapproduct
   description: Placeholder voor de uitleg van de quickscan.

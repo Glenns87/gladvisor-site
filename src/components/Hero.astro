@@ -2,7 +2,7 @@
 import Button from './Button.astro';
 
 // Desktop tweekoloms: links eyebrow, H1, lead, primaire CTA en een tekstlink
-// naar het instapproduct; rechts een portret (ca. 40%, 4:5). Op mobiel staat
+// naar het instapproduct; rechts een portret (ca. 35%, 4:5). Op mobiel staat
 // het portret kleiner onder de knoppen. Zonder src toont het portret een
 // neutrale placeholder tot de foto er is.
 interface Props {
@@ -55,7 +55,7 @@ const {
   .hero {
     display: grid;
     gap: var(--space-5);
-    padding-block: var(--space-5) var(--space-2);
+    padding-block: var(--space-3) var(--space-2);
   }
 
   .hero__text {
@@ -100,7 +100,7 @@ const {
 
   @media (min-width: 768px) {
     .hero {
-      padding-block: var(--space-7) var(--space-3);
+      padding-block: var(--space-5) var(--space-2);
     }
 
     .hero__text {
@@ -108,13 +108,16 @@ const {
     }
 
     .hero--portrait {
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      grid-template-columns: minmax(0, 13fr) minmax(0, 7fr);
       align-items: center;
       gap: var(--space-6);
     }
 
+    /* Ca. 35% breed, maar nooit zo hoog dat de ProofBar op een laptop
+       (1366x768, met browserbalk ca. 650px viewport) onder de vouw valt. */
     .hero__portrait {
-      width: 100%;
+      justify-self: end;
+      width: min(100%, calc((100svh - 300px) * 0.8));
       max-width: none;
     }
   }

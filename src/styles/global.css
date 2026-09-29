@@ -58,6 +58,7 @@ a {
   text-decoration: underline;
   text-decoration-color: var(--gold);
   text-decoration-thickness: 2px;
+  text-decoration-skip-ink: none; /* doorlopende lijn, ook onder g, j, p en y */
   text-underline-offset: 3px;
 }
 

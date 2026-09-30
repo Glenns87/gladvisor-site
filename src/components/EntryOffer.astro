@@ -20,7 +20,7 @@ const offer = site.entryOffers[formType];
 ---
 
 <aside class="entry-offer" id={id} aria-labelledby={`${formType}-titel`}>
-  <p class="eyebrow">Instapproduct</p>
+  <p class="eyebrow">Eerste stap</p>
   <h2 id={`${formType}-titel`}>{title ?? offer.titel}</h2>
   <p class="entry-offer__text">{description ?? offer.omschrijving}</p>
   <Button href={mailtoHref(site.contact.mail, offer.titel)} variant="secondary">{buttonLabel}</Button>

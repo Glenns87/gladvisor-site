@@ -17,7 +17,7 @@ Eerst het waarom, dan het hoe en wat. Dat betekent dat elk advies terug te voere
 
 **Strategie en uitvoering in één hand.** Ik maak het plan en voer het uit, zelf of samen met je team. Geen rapport dat in een la verdwijnt, maar werk dat live staat en gemeten wordt.
 
-**Onderbouwd, ook als het antwoord ongemakkelijk is.** Data eerst, mening daarna. Ik werk met scenario's in plaats van garanties, en ben eerlijk over wat afhangt van Google en wat van ons.
+**Onderbouwd, ook als het antwoord ongemakkelijk is.** Data eerst, mening daarna. Ik werk met scenario's in plaats van garanties, en ben eerlijk over wat afhangt van zoekmachines en wat van mij.
 
 **Een eigenaar aan jouw kant.** SEO werkt het best als iemand intern beslissingen kan nemen en prioriteiten kan bewaken. Is die rol er nog niet, dan help ik hem in te richten.
 

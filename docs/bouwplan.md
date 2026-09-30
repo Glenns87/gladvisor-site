@@ -180,7 +180,7 @@ gladvisor-site/
 │   ├── data/site.yaml
 │   ├── styles/tokens.css
 │   ├── components/
-│   ├── layouts/            Base, Service, Case, Post
+│   ├── layouts/            Base, Page, Service, Case, Post
 │   └── pages/              routes + 404.astro
 ├── docs/bouwplan.md
 └── CLAUDE.md

@@ -1,0 +1,96 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Base from './Base.astro';
+import Button from '../components/Button.astro';
+import Hero from '../components/Hero.astro';
+import ProofBar from '../components/ProofBar.astro';
+import { getSite } from '../lib/site';
+import type { Crumb } from '../lib/schema';
+
+// Vaste pagina uit de collectie pages (over, contact, cases, blog):
+// Hero (portret optioneel, standaard uit), optioneel ProofBar, de tekst uit markdown en daaronder
+// wat de route via de slot meegeeft. Een afsluitende CTA en een blok met
+// mailadres en werkgebied zijn optioneel en staan standaard uit.
+interface Props {
+  entry: CollectionEntry<'pages'>;
+  // Kruimelpad zonder Home, bijv. [{ name: 'Over', path: '/over/' }].
+  breadcrumbs: Crumb[];
+  portrait?: boolean;
+  cta?: boolean;
+  contactBlock?: boolean;
+}
+
+const { entry, breadcrumbs, portrait = false, cta = false, contactBlock = false } = Astro.props;
+const data = entry.data;
+const { Content } = await render(entry);
+const site = await getSite();
+---
+
+<Base
+  title={data.title}
+  description={data.description}
+  noindex={data.noindex}
+  ogImage={data.ogImage}
+  schema={{
+    types: ['BreadcrumbList', ...data.schema],
+    breadcrumbs: [{ name: 'Home', path: '/' }, ...breadcrumbs],
+  }}
+>
+  <Hero eyebrow={data.eyebrow} title={data.h1} lead={data.lead} portrait={portrait ? undefined : false} />
+
+  {data.proof.length > 0 && <ProofBar items={data.proof} />}
+
+  <div class="container section">
+    <div class="prose">
+      <Content />
+    </div>
+  </div>
+
+  <slot />
+
+  {
+    contactBlock && (
+      <div class="container section">
+        <dl class="page__contact">
+          <div>
+            <dt class="eyebrow">E-mail</dt>
+            <dd>
+              <a href={`mailto:${site.contact.mail}`}>{site.contact.mail}</a>
+            </dd>
+          </div>
+          <div>
+            <dt class="eyebrow">Werkgebied</dt>
+            <dd>{site.werkgebied}</dd>
+          </div>
+        </dl>
+      </div>
+    )
+  }
+
+  {
+    cta && (
+      <div class="container section">
+        <Button href="/contact/">Plan een kennismaking</Button>
+      </div>
+    )
+  }
+</Base>
+
+<style>
+  .page__contact {
+    display: grid;
+    max-width: var(--measure);
+    border-top: var(--hairline);
+  }
+
+  .page__contact > div {
+    display: grid;
+    gap: 4px;
+    padding-block: var(--space-2);
+    border-bottom: var(--hairline);
+  }
+
+  .page__contact dd {
+    margin: 0;
+  }
+</style>

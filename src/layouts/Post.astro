@@ -1,6 +1,7 @@
 ---
 import { getEntry, render, type CollectionEntry } from 'astro:content';
 import Base from './Base.astro';
+import { formatDate, isoDate } from '../lib/date';
 import { blogPath, pillarLabel, servicePath } from '../lib/nav';
 
 // Blogartikel. Onderaan staat altijd een vaste link omhoog naar de pijler.
@@ -14,9 +15,6 @@ const { Content } = await render(entry);
 const pillar = await getEntry(data.pillar);
 if (!pillar) throw new Error(`Pijler '${data.pillar.id}' niet gevonden`);
 
-const formatDate = (date: Date) =>
-  new Intl.DateTimeFormat('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
-const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 ---
 
 <Base

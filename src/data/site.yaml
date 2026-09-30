@@ -1,5 +1,5 @@
 # Gedeelde gegevens voor de hele site. Schema: src/content.config.ts (collectie site).
-# PLACEHOLDER: teksten van de instapproducten nog invullen.
+# PLACEHOLDER: omschrijvingen van de instapproducten nog invullen.
 
 logos:
   - name: MediaMarkt
@@ -39,15 +39,15 @@ contact:
 # KvK-nummer van Gladvisor B.V. (8 cijfers).
 kvk: "93742193"
 
-werkgebied: Binnen 100 km of een uur reistijd van Nieuwerkerk aan den IJssel, voor de helft op locatie en voor de helft remote.
+werkgebied: "Remote door heel Nederland, (deels) op locatie binnen een uur van Nieuwerkerk aan den IJssel."
 
 entryOffers:
   seo-quickscan:
-    titel: SEO-quickscan (placeholder)
+    titel: SEO-quickscan
     omschrijving: Korte omschrijving van de quickscan volgt.
   page-review:
-    titel: Page review (placeholder)
+    titel: Pagina-review
     omschrijving: Korte omschrijving van de page review volgt.
   ai-check:
-    titel: AI-check (placeholder)
+    titel: AI-zichtbaarheidscheck
     omschrijving: Korte omschrijving van de AI-check volgt.

@@ -12,7 +12,7 @@ proof:
   - value: +18%
     label: organisch verkeer na Shopware-migratie
     source: Fortune Coffee
-  - value: 2x
+  - value: "2026"
     label: nominatie Website van het Jaar
     source: RCN
 ---

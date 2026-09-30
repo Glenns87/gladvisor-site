@@ -24,7 +24,7 @@ proof:
   - value: "+18%"
     label: "organisch verkeer na Shopware-migratie"
     source: "Fortune Coffee"
-  - value: "2x"
+  - value: "2026"
     label: "nominatie Website van het Jaar"
     source: "RCN"
 softConversion:
@@ -36,8 +36,6 @@ faq:
     a: "Dat hangt af van de vraag: een audit is een afgebakend project, doorlopende begeleiding werkt met een vast aantal dagen per maand. Na een kennismaking krijg je een voorstel met een heldere scope, zodat je vooraf weet waar je aan toe bent."
   - q: "We werken al met een bureau. Heeft het dan zin?"
     a: "Vaak juist. Ik werk graag samen met bureaus en neem dan de rol van eigenaar aan jouw kant: prioriteiten bewaken, voorstellen beoordelen en zorgen dat het werk aansluit op je businessdoelen."
-  - q: "Wat als we geen eigen developer hebben?"
-    a: "Veel verbeteringen kun je zelf in je CMS doorvoeren; die zet ik bovenaan. Voor technisch werk help ik je met een duidelijke opdracht voor een developer, of ik stem direct af met je bouwer."
   - q: "Hoe snel zie ik resultaat?"
     a: "Technische knelpunten en quick wins kunnen binnen enkele weken effect hebben. Structurele groei in organisch verkeer vraagt meestal drie tot zes maanden. Ik werk met scenario's en meetbare tussendoelen, niet met garanties."
 # related volgt zodra de pijlers bestaan:

@@ -8,18 +8,19 @@ import { getSite } from '../lib/site';
 import type { Crumb } from '../lib/schema';
 
 // Vaste pagina uit de collectie pages (over, contact, cases, blog):
-// Hero met portret, optioneel ProofBar, de tekst uit markdown en daaronder
+// Hero (portret optioneel, standaard uit), optioneel ProofBar, de tekst uit markdown en daaronder
 // wat de route via de slot meegeeft. Een afsluitende CTA en een blok met
 // mailadres en werkgebied zijn optioneel en staan standaard uit.
 interface Props {
   entry: CollectionEntry<'pages'>;
   // Kruimelpad zonder Home, bijv. [{ name: 'Over', path: '/over/' }].
   breadcrumbs: Crumb[];
+  portrait?: boolean;
   cta?: boolean;
   contactBlock?: boolean;
 }
 
-const { entry, breadcrumbs, cta = false, contactBlock = false } = Astro.props;
+const { entry, breadcrumbs, portrait = false, cta = false, contactBlock = false } = Astro.props;
 const data = entry.data;
 const { Content } = await render(entry);
 const site = await getSite();
@@ -35,7 +36,7 @@ const site = await getSite();
     breadcrumbs: [{ name: 'Home', path: '/' }, ...breadcrumbs],
   }}
 >
-  <Hero eyebrow={data.eyebrow} title={data.h1} lead={data.lead} />
+  <Hero eyebrow={data.eyebrow} title={data.h1} lead={data.lead} portrait={portrait ? undefined : false} />
 
   {data.proof.length > 0 && <ProofBar items={data.proof} />}
 

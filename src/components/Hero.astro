@@ -4,7 +4,8 @@ import Button from './Button.astro';
 // Desktop tweekoloms: links eyebrow, H1, lead, primaire CTA en een tekstlink
 // naar het instapproduct; rechts een portret (ca. 35%, 4:5). Op mobiel staat
 // het portret kleiner onder de knoppen. Zonder src toont het portret een
-// neutrale placeholder tot de foto er is.
+// neutrale placeholder tot de foto er is. Met portrait={false} loopt de
+// tekst over de volle contentbreedte; de lead blijft max. 680px.
 interface Props {
   eyebrow?: string;
   title: string;
@@ -65,7 +66,7 @@ const {
     gap: var(--space-2);
   }
 
-  .hero h1 {
+  .hero--portrait h1 {
     max-width: 18em;
   }
 

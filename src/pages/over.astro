@@ -1,0 +1,9 @@
+---
+import Page from '../layouts/Page.astro';
+import { getPublished } from '../lib/content';
+
+const entry = (await getPublished('pages')).find((page) => page.id === 'over');
+if (!entry) throw new Error('src/content/pages/over.md ontbreekt of is een draft');
+---
+
+<Page entry={entry} breadcrumbs={[{ name: 'Over', path: '/over/' }]} />

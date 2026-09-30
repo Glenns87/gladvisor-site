@@ -21,7 +21,7 @@ Eerst het waarom, dan het hoe en wat. Dat betekent dat elk advies terug te voere
 
 **Een eigenaar aan jouw kant.** SEO werkt het best als iemand intern beslissingen kan nemen en prioriteiten kan bewaken. Is die rol er nog niet, dan help ik hem in te richten.
 
-**Dichtbij waar het kan, remote waar het past.** Ik werk vanuit Nieuwerkerk aan den IJssel, voor opdrachten binnen 100 kilometer of een uur reistijd, ongeveer de helft op locatie en de helft remote.
+**Remote waar het kan, op locatie waar het helpt.** Veel werk doe ik remote, ook kleinere opdrachten. Bij langere trajecten kom ik graag op locatie, binnen ongeveer een uur van Nieuwerkerk aan den IJssel.
 
 ## Achtergrond
 

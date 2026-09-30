@@ -70,7 +70,7 @@ Bij Fortune Coffee begeleidde ik de overstap naar Shopware. Waar migraties vaak 
 
 ## SEO-specialist in de regio Rotterdam
 
-Ik werk vanuit Nieuwerkerk aan den IJssel, tussen Rotterdam en Gouda. Opdrachten binnen 100 kilometer of een uur reistijd kan ik deels op locatie doen, van Den Haag en Leiden tot Utrecht, Dordrecht en Breda. Meestal ongeveer de helft op kantoor bij de klant en de helft remote. Daarbuiten werk ik volledig remote.
+Ik werk vanuit Nieuwerkerk aan den IJssel, tussen Rotterdam en Gouda. De meeste opdrachten kunnen volledig remote. Wil je dat ik aanschuif bij je team, dan kom ik graag langs binnen een uur reistijd, van Den Haag en Leiden tot Utrecht, Dordrecht en Breda.
 
 ## Meer dan alleen gevonden worden
 

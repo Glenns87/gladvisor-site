@@ -60,7 +60,7 @@ Een SEO-specialist inhuren kan als afgebakend project, zoals een audit of een mi
 
 **02. Prioriteren op impact.** Niet alles tegelijk, maar in de volgorde die het meeste oplevert: quick wins, de komende één tot drie maanden, en de lange lijn tot een jaar vooruit. Elk punt met de reden en de verwachte impact.
 
-**03. Uitvoeren en meten.** Ik voer uit, zelf of samen met je team, en rapporteer op wat ertoe doet: relevant verkeer en omzet. Wat afhangt van Google benoem ik eerlijk; wat afhangt van ons pakken we op.
+**03. Uitvoeren en meten.** Ik voer uit, zelf of samen met je team, en rapporteer op wat ertoe doet: relevant verkeer en omzet. Wat afhangt van zoekmachines benoem ik eerlijk; wat afhangt van ons pakken we op.
 
 ## Bewijs: migratie zonder verkeersverlies
 

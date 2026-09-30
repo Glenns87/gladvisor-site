@@ -6,3 +6,8 @@ export async function getSite() {
   if (!entry) throw new Error('src/data/site.yaml ontbreekt of is ongeldig');
   return entry.data;
 }
+
+// mailto-link met onderwerp, bijv. mailtoHref(site.contact.mail, 'Kennismaking').
+export function mailtoHref(mail: string, subject?: string): string {
+  return subject ? `mailto:${mail}?subject=${encodeURIComponent(subject)}` : `mailto:${mail}`;
+}

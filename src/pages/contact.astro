@@ -1,0 +1,17 @@
+---
+import Page from '../layouts/Page.astro';
+import Button from '../components/Button.astro';
+import { getPublished } from '../lib/content';
+import { getSite, mailtoHref } from '../lib/site';
+
+// Alleen e-mail als contactgegeven: geen formulier, geen telefoon, geen scripts.
+const entry = (await getPublished('pages')).find((page) => page.id === 'contact');
+if (!entry) throw new Error('src/content/pages/contact.md ontbreekt of is een draft');
+const site = await getSite();
+---
+
+<Page entry={entry} breadcrumbs={[{ name: 'Contact', path: '/contact/' }]} contactBlock>
+  <div class="container">
+    <Button href={mailtoHref(site.contact.mail, 'Kennismaking')}>Plan een kennismaking</Button>
+  </div>
+</Page>

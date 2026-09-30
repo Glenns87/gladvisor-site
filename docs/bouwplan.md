@@ -7,7 +7,7 @@ Bron van waarheid voor de bouw van de nieuwe website van Gladvisor B.V. (Glenn S
 - Migratie van WordPress naar Astro op Vercel, content in markdown in de repo, workflow via Claude Code.
 - Positionering: SEO-specialist als hoofdterm; CRO en AI-zichtbaarheid als tweede lijn. Strategie en uitvoering in één hand, gestuurd op omzet en relevant verkeer.
 - Doelgroep: HR-managers en hirers (interim of freelance rol), ondernemers zonder eigen SEO'er, marketing- en e-commercemanagers.
-- Werkgebied: binnen 100 km of een uur reistijd van Nieuwerkerk aan den IJssel, 50/50 op locatie en remote.
+- Werkgebied: Remote door heel Nederland, (deels) op locatie binnen een uur van Nieuwerkerk aan den IJssel. De verdeling op locatie/remote en de 100 km komen niet meer op de site.
 - Vaste afspraken: geen tarieven op de site; Online Advertising Europe nergens noemen; KPN-logo staat uit tot het contract het toelaat; Nederlandse teksten, geen Title Case in koppen, spaarzaam met gedachtestreepjes, niet overdrijven.
 
 ## Sitestructuur (topical map)

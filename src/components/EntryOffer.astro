@@ -1,11 +1,11 @@
 ---
 import Button from './Button.astro';
-import { getSite } from '../lib/site';
+import { getSite, mailtoHref } from '../lib/site';
 
 // Instapproduct: --bg-soft vlak, titel, twee regels uitleg en een knop.
 // Titel en uitleg komen uit site.yaml (entryOffers) tenzij de pagina ze
-// meegeeft via softConversion. Het formulier zelf volgt later; de knop
-// gaat voorlopig naar /contact/ met het formType als onderwerp.
+// meegeeft via softConversion. De knop opent een mail met de titel uit
+// site.yaml als onderwerp; geen formulier.
 interface Props {
   formType: 'seo-quickscan' | 'page-review' | 'ai-check';
   title?: string;
@@ -23,7 +23,7 @@ const offer = site.entryOffers[formType];
   <p class="eyebrow">Instapproduct</p>
   <h2 id={`${formType}-titel`}>{title ?? offer.titel}</h2>
   <p class="entry-offer__text">{description ?? offer.omschrijving}</p>
-  <Button href={`/contact/?onderwerp=${formType}`} variant="secondary">{buttonLabel}</Button>
+  <Button href={mailtoHref(site.contact.mail, offer.titel)} variant="secondary">{buttonLabel}</Button>
 </aside>
 
 <style>

@@ -1,0 +1,43 @@
+---
+import Page from '../../layouts/Page.astro';
+import CaseCard from '../../components/CaseCard.astro';
+import { getPublished } from '../../lib/content';
+import { casePath } from '../../lib/nav';
+
+// Overzicht van alle gepubliceerde cases, gesorteerd op order.
+const entry = (await getPublished('pages')).find((page) => page.id === 'cases');
+if (!entry) throw new Error('src/content/pages/cases.md ontbreekt of is een draft');
+const cases = (await getPublished('cases')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Page entry={entry} breadcrumbs={[{ name: 'Cases', path: '/cases/' }]} cta>
+  <section class="container" aria-label="Alle cases">
+    <div class="cases">
+      {
+        cases.map((item) => (
+          <CaseCard
+            client={item.data.client}
+            sector={item.data.sector}
+            result={item.data.result}
+            href={casePath(item.id)}
+            level={2}
+          />
+        ))
+      }
+    </div>
+  </section>
+</Page>
+
+<style>
+  .cases {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 768px) {
+    .cases {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+  }
+</style>

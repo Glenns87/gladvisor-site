@@ -1,0 +1,56 @@
+---
+import Page from '../../layouts/Page.astro';
+import { getPublished } from '../../lib/content';
+import { formatDate, isoDate } from '../../lib/date';
+import { blogPath } from '../../lib/nav';
+
+// Overzicht van alle gepubliceerde posts, nieuwste eerst. Hairlines, geen
+// kaarten, geen paginering of categorieën.
+const entry = (await getPublished('pages')).find((page) => page.id === 'blog');
+if (!entry) throw new Error('src/content/pages/blog.md ontbreekt of is een draft');
+const posts = (await getPublished('blog')).sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+---
+
+<Page entry={entry} breadcrumbs={[{ name: 'Blog', path: '/blog/' }]}>
+  <section class="container" aria-label="Alle artikelen">
+    <ul class="posts">
+      {
+        posts.map((post) => (
+          <li class="post-row">
+            <time class="small post-row__date" datetime={isoDate(post.data.publishDate)}>
+              {formatDate(post.data.publishDate)}
+            </time>
+            <h2 class="post-row__title">
+              <a href={blogPath(post.id)}>{post.data.h1}</a>
+            </h2>
+            <p class="post-row__description">{post.data.description}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Page>
+
+<style>
+  .posts {
+    max-width: var(--measure);
+    padding: 0;
+    list-style: none;
+    border-bottom: var(--hairline);
+  }
+
+  .post-row {
+    display: grid;
+    gap: var(--space-1);
+    padding-block: var(--space-3);
+    border-top: var(--hairline);
+  }
+
+  .post-row__date {
+    color: var(--muted);
+  }
+
+  .post-row__title {
+    font-size: var(--fs-h3);
+  }
+</style>

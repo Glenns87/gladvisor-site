@@ -34,7 +34,7 @@ Regel: commerciële subonderwerpen onder de pijler, informationele in /blog/ met
 
 Cases bij launch: fortune-coffee, horloge-nl, rcn. Logostrip (in deze volgorde): MediaMarkt, Horloge.nl, RCN, Fortune Coffee, Alpine, Bamigo. Fingerspitz, Rinkel en KPN staan op visible: false.
 
-Instapproducten (secundaire conversie): seo-quickscan (op /seo/), page-review (op /cro/), ai-check (op /ai-zichtbaarheid/).
+Instapproducten (secundaire conversie): seo-quickscan (op /seo/ en /ai-zichtbaarheid/) en page-review (op /cro/). Er is geen apart instapproduct voor AI-zichtbaarheid meer.
 
 ## Bouwvoorbereiding
 
@@ -66,7 +66,7 @@ services:
 - pillar: reference naar services (verplicht bij sub)
 - hero: statement (de lead, inclusief doelgroep), audience (optioneel, wordt niet los getoond), ctaPrimary { label, href }; label in de hero: 'Plan een kennismaking'
 - proof: lijst van reference naar cases en/of { label, value, source (optioneel) }
-- softConversion: { label, description, formType: 'seo-quickscan' | 'page-review' | 'ai-check' }
+- softConversion: { label, description, formType: 'seo-quickscan' | 'page-review' }
 - faq: lijst van { q, a } (voedt FAQPage-schema)
 - related: lijst van reference naar services of blog
 
@@ -95,7 +95,7 @@ site.yaml:
 - contact: mail (glenn@gladvisor.nl, het enige contactgegeven op de site); linkedin optioneel en pas getoond als ingevuld; geen telefoonnummer
 - kvk: 93742193, voor de footer en Organization-schema
 - werkgebied: tekst zoals onder Context
-- entryOffers: seo-quickscan, page-review, ai-check, elk met titel en korte omschrijving
+- entryOffers: seo-quickscan en page-review, elk met titel en korte omschrijving
 
 Bewust buiten het contentmodel: redirects (vercel.json) en tarieven (worden niet getoond).
 
@@ -260,7 +260,7 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 - Title: AI-zichtbaarheid (GEO): ChatGPT en AI Overviews | Gladvisor
 - H1: AI-zichtbaarheid: zichtbaar worden in ChatGPT, AI Overviews en Perplexity
 - H2's: herken je dit; wat AI-zichtbaarheid wel en niet is; mijn aanpak (quickscan, content, off-site, meetopzet); wat je niet nodig hebt; eerlijk over de stand van zaken; onderdeel van SEO, ook los af te nemen
-- FAQ (4), instapproduct ai-check
+- FAQ (4), instapproduct seo-quickscan
 - Schema: Service, FAQPage
 
 ### /over/

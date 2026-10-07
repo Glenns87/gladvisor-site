@@ -40,7 +40,7 @@ const proofItem = z.object({
   source: z.string().min(1).optional(),
 });
 
-const formType = z.enum(['seo-quickscan', 'page-review', 'ai-check']);
+const formType = z.enum(['seo-quickscan', 'page-review']);
 
 const markdown = (dir: string) =>
   glob({ pattern: '**/*.md', base: `./src/content/${dir}` });
@@ -169,7 +169,6 @@ const site = defineCollection({
     entryOffers: z.object({
       'seo-quickscan': z.object({ titel: z.string().min(1), omschrijving: z.string().min(1) }),
       'page-review': z.object({ titel: z.string().min(1), omschrijving: z.string().min(1) }),
-      'ai-check': z.object({ titel: z.string().min(1), omschrijving: z.string().min(1) }),
     }),
   }),
 });

@@ -27,8 +27,7 @@ proof:
     source: "RCN"
 softConversion:
   label: "Begin met een pagina-review"
-  # PLACEHOLDER: omschrijving van de pagina-review volgt (zelfde tekst als in site.yaml).
-  description: "Korte omschrijving van de page review volgt."
+  description: "Stuur me één landingspagina of productpagina. Ik bekijk hem vooraf en we bespreken drie concrete verbeterpunten in een kennismaking van 30 minuten."
   formType: "page-review"
 faq:
   - q: "Hoeveel verkeer heb ik nodig voor conversie optimalisatie?"
@@ -41,8 +40,7 @@ faq:
     a: "Ja. Teksten, paginaopbouw en briefings doe ik zelf. Technische aanpassingen gaan in overleg met je developer of bureau, waarbij ik de uitvoering aanstuur. Zo blijven verbeteringen niet in een rapport hangen."
 related:
   - { collection: services, id: seo }
-  # ai-zichtbaarheid volgt zodra die pijler bestaat:
-  #   - { collection: services, id: ai-zichtbaarheid }
+  - { collection: services, id: ai-zichtbaarheid }
 draft: false
 ---
 

@@ -262,7 +262,7 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 - Status: live op de preview, tekst in src/content/services/ai-zichtbaarheid/index.md
 - Title: AI-zichtbaarheid (GEO) | ChatGPT en AI Overviews | Gladvisor (aangepast aan de limiet van 60 tekens)
 - H1: AI-zichtbaarheid: zichtbaar worden in ChatGPT, AI Overviews en Perplexity
-- Proof bar: 13+ jaar SEO; AI-crawltoegang in elke audit gecheckt; Google-documentatie als uitgangspunt
+- Proof bar: 13+ jaar SEO; AI-crawltoegang in elke audit gecheckt; 4 markten SEO en AI-zichtbaarheid (Rinkel)
 - H2's: herken je dit; wat AI-zichtbaarheid wel en niet is; mijn aanpak (quickscan, content, vermeldingen, meetopzet); wat je niet nodig hebt; eerlijk over de stand van zaken; onderdeel van SEO, ook los af te nemen
 - FAQ (4), instapproduct seo-quickscan (geen eigen instapproduct), Ook interessant (/seo/ en /cro/)
 - Meetopzet AI: Search Console (rapport generatieve AI), Bing Webmaster Tools (AI-rapport) en GA4. Geen prompt tracking en geen eigen site als experiment.

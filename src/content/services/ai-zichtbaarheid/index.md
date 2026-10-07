@@ -22,8 +22,9 @@ proof:
     label: "jaar SEO, de basis onder AI-zichtbaarheid"
   - value: "Elke audit"
     label: "AI-crawltoegang standaard gecheckt"
-  - value: "Google"
-    label: "eigen documentatie als uitgangspunt"
+  - value: "4 markten"
+    label: "SEO en AI-zichtbaarheid"
+    source: "Rinkel"
 softConversion:
   label: "Begin met een SEO-quickscan"
   description: "Ik kijk vooraf naar je site op techniek, content en AI-crawltoegang, en bespreek drie bevindingen met je in een kennismaking van 30 minuten."

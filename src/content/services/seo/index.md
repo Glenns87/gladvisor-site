@@ -29,7 +29,7 @@ proof:
     source: "RCN"
 softConversion:
   label: "Begin met een SEO-quickscan"
-  description: "Drie bevindingen over je site en wat ik als eerste zou aanpakken, per mail."
+  description: "Ik kijk vooraf naar je site op techniek, content en AI-crawltoegang, en bespreek drie bevindingen met je in een kennismaking van 30 minuten."
   formType: "seo-quickscan"
 faq:
   - q: "Wat kost het inschakelen van een SEO-specialist?"
@@ -38,9 +38,9 @@ faq:
     a: "Vaak juist. Ik werk graag samen met bureaus en neem dan de rol van eigenaar aan jouw kant: prioriteiten bewaken, voorstellen beoordelen en zorgen dat het werk aansluit op je businessdoelen."
   - q: "Hoe snel zie ik resultaat?"
     a: "Technische knelpunten en quick wins kunnen binnen enkele weken effect hebben. Structurele groei in organisch verkeer vraagt meestal drie tot zes maanden. Ik werk met scenario's en meetbare tussendoelen, niet met garanties."
-# related volgt zodra de pijlers bestaan:
-#   - { collection: services, id: cro }
-#   - { collection: services, id: ai-zichtbaarheid }
+related:
+  - { collection: services, id: cro }
+  - { collection: services, id: ai-zichtbaarheid }
 draft: false
 ---
 

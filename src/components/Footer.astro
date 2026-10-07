@@ -27,7 +27,9 @@ const links = [
         {
           site.contact.linkedin && (
             <li>
-              <a href={site.contact.linkedin}>LinkedIn</a>
+              <a href={site.contact.linkedin} target="_blank" rel="noopener">
+                LinkedIn<span class="visually-hidden"> (opent in nieuw tabblad)</span>
+              </a>
             </li>
           )
         }

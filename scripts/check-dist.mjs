@@ -6,9 +6,12 @@
 // - een pagina niet precies één h1 heeft;
 // - er een <script> in de HTML staat anders dan JSON-LD (alles server-side);
 // - er ergens een absolute URL zonder www staat (canonical, Open Graph,
-//   JSON-LD, sitemap, robots.txt). Het primaire domein is www.gladvisor.nl.
+//   JSON-LD, sitemap, robots.txt). Het primaire domein is www.gladvisor.nl;
+// - een externe link niet opent in een nieuw tabblad (target="_blank" en rel
+//   met noopener). Extern: zie scripts/lib/external-links.mjs.
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
+import { isExternalUrl } from './lib/external-links.mjs';
 
 const dist = 'dist';
 const site = 'https://www.gladvisor.nl';
@@ -61,6 +64,16 @@ for (const [path, html] of pages) {
     if (!inSitemap) fail(`${path} is indexeerbaar maar ontbreekt in de sitemap`);
     const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
     if (canonical !== `${site}${path}`) fail(`${path}: canonical is ${canonical ?? 'leeg'}`);
+  }
+
+  for (const [tag] of html.matchAll(/<a\s[^>]*>/g)) {
+    const href = tag.match(/\shref="([^"]*)"/)?.[1];
+    if (!isExternalUrl(href)) continue;
+    const target = tag.match(/\starget="([^"]*)"/)?.[1];
+    const rel = tag.match(/\srel="([^"]*)"/)?.[1]?.split(/\s+/) ?? [];
+    if (target !== '_blank' || !rel.includes('noopener')) {
+      fail(`${path}: externe link ${href} opent niet in een nieuw tabblad (target="_blank" rel="noopener")`);
+    }
   }
 
   const h1s = html.match(/<h1[\s>]/g)?.length ?? 0;

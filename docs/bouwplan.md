@@ -213,6 +213,7 @@ SEO-basis in de Base-layout:
 - JSON-LD via één Schema-component: Organization + Person + WebSite (home), Service (diensten), FAQPage (waar een FAQ staat), Article (blog), BreadcrumbList (alle pagina's behalve home). Het schema-veld in de frontmatter voegt typen toe (bijv. Person op /seo/). Organization bevat e-mail en KvK, geen telefoonnummer
 - Na de build controleert scripts/check-dist.mjs sitemap, canonicals, JSON-LD, één h1 per pagina en dat er geen scripts in de HTML staan
 - Alle content server-side gerenderd; niets dat alleen via JavaScript laadt
+- Externe links (http(s), host niet gladvisor.nl of www.gladvisor.nl) openen altijd in een nieuw tabblad: target="_blank", rel="noopener" (geen nofollow, geen noreferrer), plus een verborgen tekst "(opent in nieuw tabblad)" voor schermlezers. mailto, tel, ankers en relatieve links blijven ongemoeid. Markdown via een eigen hast-plugin op Sätteri (scripts/lib/external-links.mjs); scripts/check-dist.mjs laat de build falen bij een externe link zonder deze attributen
 - 404-pagina in huisstijl met links naar de drie pijlers en contact
 - Afbeeldingen via Astro's image-component
 

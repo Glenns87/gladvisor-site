@@ -34,7 +34,7 @@ Regel: commerciële subonderwerpen onder de pijler, informationele in /blog/ met
 
 Cases bij launch: fortune-coffee, horloge-nl, rcn. Logostrip (in deze volgorde): MediaMarkt, Horloge.nl, RCN, Fortune Coffee, Alpine, Bamigo. Fingerspitz, Rinkel en KPN staan op visible: false.
 
-Instapproducten (secundaire conversie): seo-quickscan (op /seo/ en /ai-zichtbaarheid/) en page-review (op /cro/). Er is geen apart instapproduct voor AI-zichtbaarheid meer.
+Instapproducten (secundaire conversie): seo-quickscan (op /seo/ en /ai-zichtbaarheid/) en page-review (op /cro/). Beide worden vooraf bekeken en mondeling besproken in een kennismaking van 30 minuten, zonder schriftelijk rapport. Het aparte instapproduct voor AI-zichtbaarheid is vervallen.
 
 ## Bouwvoorbereiding
 
@@ -230,7 +230,7 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 - H2 Hoe ik werk: nulmeting (techniek, content, autoriteit, AI-zichtbaarheid standaard), prioritering op business impact (quick wins, 1–3 maanden, 3–12 maanden), uitvoering met vaste eigenaar aan klantzijde
 - H2 Bewijs: Fortune Coffee kort, link naar case en /seo/website-migratie/
 - H2 SEO-specialist in de regio Rotterdam
-- FAQ (4), instapproduct seo-quickscan, H2 Ook interessant
+- FAQ (3), instapproduct seo-quickscan, H2 Ook interessant (/cro/ en /ai-zichtbaarheid/)
 - Schema: Service, Person, FAQPage
 
 ### /seo/website-migratie/
@@ -249,18 +249,23 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 
 ### /cro/
 
-- Title: CRO-specialist: conversie optimalisatie | Gladvisor
+- Status: live op de preview, tekst in src/content/services/cro/index.md
+- Title: Conversie optimalisatie (CRO) | CRO-specialist | Gladvisor (aangepast aan de limiet van 60 tekens)
 - H1: Conversie optimalisatie: meer omzet uit het verkeer dat je al hebt
-- H2's: herken je dit; mijn aanpak (CRO-analyse, expert review op vaste principes plus concurrentievergelijking, verbeteren en meten); waarom ik niet met A/B-testen begin; CRO en SEO in één hand; voorbeeld uit de praktijk
-- FAQ (4), instapproduct page-review
+- Proof bar: ruim 2x traffic en omzet (Horloge.nl, 2018–2022); 13+ jaar SEO en CRO; nominatie Website van het Jaar 2026 (RCN)
+- H2's: herken je dit; mijn aanpak: van CRO-analyse naar verbeteringen; waarom ik niet met A/B-testen begin; CRO en SEO in één hand; voorbeelden uit de praktijk (RCN, Bamigo)
+- FAQ (4), instapproduct page-review, Ook interessant (/seo/ en /ai-zichtbaarheid/)
 - Schema: Service, FAQPage
 
 ### /ai-zichtbaarheid/
 
-- Title: AI-zichtbaarheid (GEO): ChatGPT en AI Overviews | Gladvisor
+- Status: live op de preview, tekst in src/content/services/ai-zichtbaarheid/index.md
+- Title: AI-zichtbaarheid (GEO) | ChatGPT en AI Overviews | Gladvisor (aangepast aan de limiet van 60 tekens)
 - H1: AI-zichtbaarheid: zichtbaar worden in ChatGPT, AI Overviews en Perplexity
-- H2's: herken je dit; wat AI-zichtbaarheid wel en niet is; mijn aanpak (quickscan, content, off-site, meetopzet); wat je niet nodig hebt; eerlijk over de stand van zaken; onderdeel van SEO, ook los af te nemen
-- FAQ (4), instapproduct seo-quickscan
+- Proof bar: 13+ jaar SEO; AI-crawltoegang in elke audit gecheckt; Google-documentatie als uitgangspunt
+- H2's: herken je dit; wat AI-zichtbaarheid wel en niet is; mijn aanpak (quickscan, content, vermeldingen, meetopzet); wat je niet nodig hebt; eerlijk over de stand van zaken; onderdeel van SEO, ook los af te nemen
+- FAQ (4), instapproduct seo-quickscan (geen eigen instapproduct), Ook interessant (/seo/ en /cro/)
+- Meetopzet AI: Search Console (rapport generatieve AI), Bing Webmaster Tools (AI-rapport) en GA4. Geen prompt tracking en geen eigen site als experiment.
 - Schema: Service, FAQPage
 
 ### /over/

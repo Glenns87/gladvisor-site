@@ -1,5 +1,4 @@
 # Gedeelde gegevens voor de hele site. Schema: src/content.config.ts (collectie site).
-# PLACEHOLDER: omschrijvingen van de instapproducten nog invullen.
 
 logos:
   - name: MediaMarkt
@@ -44,7 +43,7 @@ werkgebied: "Remote door heel Nederland, (deels) op locatie binnen een uur van N
 entryOffers:
   seo-quickscan:
     titel: SEO-quickscan
-    omschrijving: Korte omschrijving van de quickscan volgt.
+    omschrijving: "Ik kijk vooraf naar je site op techniek, content en AI-crawltoegang, en bespreek drie bevindingen met je in een kennismaking van 30 minuten."
   page-review:
     titel: Pagina-review
-    omschrijving: Korte omschrijving van de page review volgt.
+    omschrijving: "Stuur me één landingspagina of productpagina. Ik bekijk hem vooraf en we bespreken drie concrete verbeterpunten in een kennismaking van 30 minuten."

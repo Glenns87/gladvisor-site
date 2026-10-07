@@ -29,7 +29,7 @@ proof:
     source: "RCN"
 softConversion:
   label: "Begin met een SEO-quickscan"
-  description: "Drie bevindingen over je site en wat ik als eerste zou aanpakken, per mail."
+  description: "Ik kijk vooraf naar je site op techniek, content en AI-crawltoegang, en bespreek drie bevindingen met je in een kennismaking van 30 minuten."
   formType: "seo-quickscan"
 faq:
   - q: "Wat kost het inschakelen van een SEO-specialist?"

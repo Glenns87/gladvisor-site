@@ -59,13 +59,13 @@ Waar beschikbaar gebruik ik je eigen data uit Search Console en analytics. Die l
 
 ## Wat je krijgt
 
-Een rapport met de bevindingen per onderdeel, in gewone taal en met de reden waarom iets ertoe doet.
+**Een rapport** met de bevindingen per onderdeel, in gewone taal en met de reden waarom iets ertoe doet.
 
-Een werkbestand met de onderliggende data: zoekwoorden, de koppeling aan pagina's en de technische punten. Zo kunnen jij of je developer er direct mee aan de slag.
+**Een werkbestand** met de onderliggende data: zoekwoorden, de koppeling aan pagina's en de technische punten. Zo kunnen jij of je developer er direct mee aan de slag.
 
-Een geprioriteerde roadmap in drie termijnen: quick wins, de komende één tot drie maanden en de lange lijn tot een jaar vooruit. Elk punt met de verwachte impact en wie het oppakt.
+**Een geprioriteerde roadmap** in drie termijnen: quick wins, de komende één tot drie maanden en de lange lijn tot een jaar vooruit. Elk punt met de verwachte impact en wie het oppakt.
 
-Een gesprek waarin we de uitkomsten doorlopen en de eerste stappen afspreken. Een audit die in een la verdwijnt, levert niets op.
+**Een gesprek** waarin we de uitkomsten doorlopen en de eerste stappen afspreken. Een audit die in een la verdwijnt, levert niets op.
 
 ## Voor wie
 

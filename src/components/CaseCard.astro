@@ -41,6 +41,26 @@ const Heading = `h${level}` as 'h2' | 'h3';
     border-top: 0;
   }
 
+  /* In een .case-grid: vier rijen uit het raster van de ouder, zodat
+     resultaat, zin en link in alle kaarten op dezelfde hoogte beginnen. */
+  @supports (grid-template-rows: subgrid) {
+    :global(.case-grid) > .case-card {
+      grid-row: span 4;
+      grid-template-rows: subgrid;
+      row-gap: var(--space-1);
+    }
+  }
+
+  /* Fallback zonder subgrid: ruimte voor een eyebrow van twee regels
+     (line-height 1.4), zodat de kaarten op desktop toch gelijk lopen. */
+  @supports not (grid-template-rows: subgrid) {
+    @media (min-width: 768px) {
+      :global(.case-grid) > .case-card > :global(.eyebrow) {
+        min-height: 2.8em;
+      }
+    }
+  }
+
   .case-card__result {
     display: grid;
     gap: 4px;

@@ -68,7 +68,7 @@ const proof =
     cases.length > 0 && (
       <section class="container section" aria-labelledby="bewijs">
         <SectionDivider number={2} eyebrow="Bewijs" title="Resultaten bij klanten" id="bewijs" />
-        <div class="home__cases">
+        <div class="case-grid">
           {cases.map((entry) => (
             <CaseCard
               client={entry.data.client}
@@ -87,17 +87,3 @@ const proof =
     <Button href="/contact/">Plan een kennismaking</Button>
   </section>
 </Base>
-
-<style>
-  .home__cases {
-    display: grid;
-    gap: var(--space-5);
-  }
-
-  @media (min-width: 768px) {
-    .home__cases {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--space-4);
-    }
-  }
-</style>

@@ -162,3 +162,20 @@ a:hover {
   color: var(--ink);
   font-weight: var(--weight-bold);
 }
+
+/* Rij met casekaarten (CaseCard). Elke kaart beslaat vier rijen: eyebrow,
+   resultaat, zin en link. Met subgrid (zie CaseCard.astro) beginnen die in
+   alle kaarten van een rij op dezelfde hoogte, ook als een eyebrow over twee
+   regels loopt. Aantal kolommen vanaf 768px via --case-columns (standaard 3). */
+.case-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--space-4);
+  row-gap: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .case-grid {
+    grid-template-columns: repeat(var(--case-columns, 3), minmax(0, 1fr));
+  }
+}

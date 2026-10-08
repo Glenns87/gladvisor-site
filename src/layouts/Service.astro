@@ -48,7 +48,7 @@ if (data.pillar && !pillar) throw new Error(`Pijler '${data.pillar.id}' niet gev
 const breadcrumbs = [
   { name: 'Home', path: '/' },
   ...(pillar ? [{ name: pillarLabel(pillar.id), path: servicePath(pillar.id) }] : []),
-  { name: isPillar ? pillarLabel(entry.id) : data.h1, path: servicePath(entry.id) },
+  { name: isPillar ? pillarLabel(entry.id) : (data.breadcrumbLabel ?? data.h1), path: servicePath(entry.id) },
 ];
 
 const offerId = 'instapproduct';

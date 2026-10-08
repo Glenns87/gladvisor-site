@@ -39,7 +39,7 @@ faq:
   - q: "Onze nieuwe site is al live en het verkeer daalt. Kun je dan nog helpen?"
     a: "Ja. Ik vergelijk de oude en nieuwe situatie, zoek uit welke pagina's verkeer verliezen en waarom, en zet de herstelacties op volgorde van impact. Hoe eerder je dat doet, hoe sneller het herstel."
 related:
-  - { collection: services, id: seo }
+  - { collection: services, id: seo/seo-audit }
   - { collection: services, id: cro }
 draft: false
 ---

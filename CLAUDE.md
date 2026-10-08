@@ -45,3 +45,4 @@ Website van Gladvisor B.V. (Glenn Snel, freelance SEO-specialist). Astro 7, Type
 
 - Kleine, logische commits met een duidelijke boodschap.
 - Na elke taak de build draaien: `npm run build`. Die draait ook `astro check`.
+- Geen geheimen in de repo: maak geen .env-bestanden aan en lees ze niet. Is er ooit een sleutel nodig, dan alleen via Vercel Environment Variables met Sensitive aan; vraag het eerst aan Glenn.

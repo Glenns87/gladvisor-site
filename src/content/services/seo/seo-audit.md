@@ -23,7 +23,7 @@ proof:
   - value: "Elke audit"
     label: "AI-crawltoegang standaard meegenomen"
   - value: "3"
-    label: "termijnen in de roadmap: quick wins, 1–3 en 3–12 maanden"
+    label: "termijnen in de roadmap: quick wins, 1–\u20603 en 3–\u206012 maanden"
 softConversion:
   label: "Begin met een SEO-quickscan"
   description: "Ik kijk vooraf naar je site op techniek, content en AI-crawltoegang, en bespreek drie bevindingen met je in een kennismaking van 30 minuten."

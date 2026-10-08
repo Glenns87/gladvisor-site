@@ -276,6 +276,40 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 - Meetopzet AI: Search Console (rapport generatieve AI), Bing Webmaster Tools (AI-rapport) en GA4. Geen prompt tracking en geen eigen site als experiment.
 - Schema: Service, FAQPage
 
+### Cases
+
+Status: de drie cases bij launch zijn gevuld en live op de preview, tekst in src/content/cases/. Op /cases/ en op home staan ze als kaarten in de volgorde Fortune Coffee, Horloge.nl, RCN, met resultaat, zin en link in een rij uitgelijnd (subgrid).
+
+/cases/fortune-coffee/
+
+- Title: Case Fortune Coffee: migratie naar Shopware | Gladvisor
+- H1: Van een eigen CMS naar Shopware, met 18% organische groei
+- Rol: Freelance lead online marketing (SEO en CRO)
+- Periode: 2023–2024 (23 maanden)
+- Resultaat: +18% organisch verkeer, ten opzichte van een jaar eerder, in de vier maanden na livegang
+
+/cases/horloge-nl/
+
+- Title: Case Horloge.nl: traffic en omzet ruim 2x | Gladvisor
+- H1: Traffic en omzet ruim verdubbeld bij een horlogewebshop met 70+ merken
+- Rol: Van SEO-specialist tot Marketing Manager en MT-lid (in loondienst)
+- Periode: April 2018 – augustus 2022
+- Resultaat: ruim 2x traffic en omzet, over de periode april 2018 tot augustus 2022
+
+/cases/rcn/
+
+- Title: Case RCN: interim website lead en CRO | Gladvisor
+- H1: Een doorlopend CRO-programma, snel overgenomen als interim website lead
+- Rol: Interim website lead (SEO en CRO)
+- Periode: 2026 (6 maanden)
+- Resultaat: 2–3 A/B-tests per maand, in een doorlopend CRO-programma, soms parallel in dezelfde customer journey
+
+Open punten:
+
+- Fortune Coffee: aanpak uitbreiden en een tweede cijfer (volgt van Glenn)
+- Horloge.nl: aanpak in drie stappen (volgt)
+- Quotes: voorlopig overgeslagen bij alle drie de cases
+
 ### /over/
 
 - Title: Over Glenn Snel, freelance SEO-specialist | Gladvisor

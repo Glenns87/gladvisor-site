@@ -12,8 +12,8 @@ node_modules/
 npm-debug.log*
 
 # environment variables
-.env
-.env.production
+.env*
+!.env.example
 
 # macOS
 .DS_Store

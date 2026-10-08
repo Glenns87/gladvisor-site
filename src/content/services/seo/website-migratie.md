@@ -2,6 +2,7 @@
 title: "SEO bij websitemigratie: zonder verkeersverlies | Gladvisor"
 description: "Nieuwe website of ander platform? Zo behoud je je organisch verkeer bij een migratie. Mijn aanpak in vier fases en een case met +18% na livegang."
 h1: "SEO bij een websitemigratie: overstappen zonder je verkeer te verliezen"
+breadcrumbLabel: "Websitemigratie"
 type: sub
 pillar: seo
 focusKeyword: "seo migratie"
@@ -38,7 +39,7 @@ faq:
   - q: "Onze nieuwe site is al live en het verkeer daalt. Kun je dan nog helpen?"
     a: "Ja. Ik vergelijk de oude en nieuwe situatie, zoek uit welke pagina's verkeer verliezen en waarom, en zet de herstelacties op volgorde van impact. Hoe eerder je dat doet, hoe sneller het herstel."
 related:
-  - { collection: services, id: seo }
+  - { collection: services, id: seo/seo-audit }
   - { collection: services, id: cro }
 draft: false
 ---

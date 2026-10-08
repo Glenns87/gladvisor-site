@@ -51,6 +51,8 @@ const services = defineCollection({
     .object({
       ...seo,
       h1: z.string().min(1),
+      // Kort label voor het kruimelpad; zonder label wordt de h1 gebruikt.
+      breadcrumbLabel: z.string().min(1).max(30).optional(),
       focusKeyword: z.string().min(1),
       secondaryKeywords: z.array(z.string()).default([]),
       type: z.enum(['pijler', 'sub']),

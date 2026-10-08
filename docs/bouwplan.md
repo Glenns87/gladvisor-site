@@ -62,6 +62,7 @@ Gedeelde SEO-velden (alle collecties):
 services:
 
 - h1, focusKeyword, secondaryKeywords
+- breadcrumbLabel: optioneel, max. 30 tekens; kort label voor de laatste stap van het kruimelpad bij subpagina's (zonder label wordt de h1 gebruikt)
 - type: 'pijler' | 'sub'
 - pillar: reference naar services (verplicht bij sub)
 - hero: statement (de lead, inclusief doelgroep), audience (optioneel, wordt niet los getoond), ctaPrimary { label, href }; label in de hero: 'Plan een kennismaking'
@@ -241,15 +242,18 @@ Elke dienstpagina: 600–800 woorden, één primaire CTA naar /contact/, secunda
 - H1: SEO bij een websitemigratie: overstappen zonder je verkeer te verliezen
 - Proof bar: +18% organisch verkeer na Shopware-migratie (Fortune Coffee); 13+ jaar ervaring in SEO; 100 weken opdracht, gestart als 13 (Fortune Coffee)
 - H2's: waarom migraties verkeer kosten; mijn aanpak in vier fases; case Fortune Coffee: naar Shopware met 18% groei; wanneer je mij erbij haalt
-- FAQ (3), instapproduct seo-quickscan, Ook interessant (/seo/ en /cro/); /seo/seo-audit/ komt erbij zodra die pagina bestaat
+- FAQ (3), instapproduct seo-quickscan, Ook interessant (/seo/seo-audit/ en /cro/)
 - Schema: Service, FAQPage
 
 ### /seo/seo-audit/
 
+- Status: gevuld en live op de preview, tekst in src/content/services/seo/seo-audit.md (sub onder /seo/, kruimelpadlabel 'SEO-audit')
 - Title: SEO-audit: techniek, content en AI-zichtbaarheid | Gladvisor
 - H1: SEO-audit: weten waar je staat en wat als eerste moet
-- H2's: wat ik onderzoek; wat je krijgt; voor wie; voorbeeld
-- Schema: Service
+- Proof bar: 13+ jaar ervaring in SEO (klant-, bureau- en freelancekant); AI-crawltoegang standaard meegenomen in elke audit; 3 termijnen in de roadmap: quick wins, 1–3 en 3–12 maanden
+- H2's: wat ik onderzoek; wat je krijgt; voor wie; uit de praktijk (anoniem voorbeeld)
+- FAQ (3), instapproduct seo-quickscan, Ook interessant (/seo/website-migratie/ en /ai-zichtbaarheid/)
+- Schema: Service, FAQPage
 
 ### /cro/
 

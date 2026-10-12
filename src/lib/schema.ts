@@ -67,6 +67,7 @@ export function buildGraph(ctx: Context): Node[] {
       name: 'Glenn Snel',
       jobTitle: 'Freelance SEO-specialist',
       url: at('/over/'),
+      image: at('/images/glenn-snel.jpg'),
       worksFor: { '@id': orgId },
       sameAs,
     }),

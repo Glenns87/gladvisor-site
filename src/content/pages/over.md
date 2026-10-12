@@ -6,7 +6,6 @@ h1: "Ik begin bij je business, niet bij je website"
 schema: ["Person", "Organization"]
 noindex: false
 draft: false
-# Persoonlijke noot (twee à drie zinnen) volgt nog, boven de afsluitende alinea.
 ---
 
 Een goede SEO-aanpak begint niet bij zoekwoorden, maar bij de vraag waar je bedrijf naartoe wil. Welke klanten, welke markt, welke omzet. Pas als dat helder is, wordt zichtbaar welk verkeer er echt toe doet en welk werk je beter kunt laten liggen.
@@ -36,5 +35,7 @@ Die drie perspectieven maken verschil. Ik weet hoe een bureau denkt, wat een in-
 **Geen open deuren.** Is iets niet nodig, dan zeg ik dat. Ook als het mij werk kost.
 
 **Een eerlijk nee.** Past een vraag niet bij wat ik goed kan, dan zeg ik dat en denk ik mee over wie wel past.
+
+Ik woon met mijn gezin in Nieuwerkerk aan den IJssel. Naast mijn werk volg ik AI op de voet en bouw ik er eigen tools mee; deze site is daar een voorbeeld van. Buiten werktijd sta ik geregeld op de padelbaan.
 
 Benieuwd of we een match zijn? [Plan een kennismaking van 30 minuten](/contact/). Je krijgt een eerlijk beeld van waar je staat, ook als de conclusie is dat je mij niet nodig hebt.

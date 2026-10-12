@@ -145,7 +145,7 @@ Basiscomponenten:
 | Component | Opbouw |
 | --- | --- |
 | Header | goud vierkantje + 'Gladvisor' bold links; navigatie rechts (SEO, CRO, AI-zichtbaarheid, Cases, Over); knop 'Kennismaken' |
-| Hero | desktop tweekoloms: links eyebrow, H1, lead (met doelgroep), primaire CTA 'Plan een kennismaking' + tekstlink naar instapproduct; rechts portret op ca. 40% breedte, beeldverhouding 4:5. Mobiel: portret kleiner onder de knoppen. Tot de foto er is: placeholder in --bg-soft met hairline-rand, alt 'Portret van Glenn Snel' |
+| Hero | desktop tweekoloms: links eyebrow, H1, lead (met doelgroep), primaire CTA 'Plan een kennismaking' + tekstlink naar instapproduct; rechts portret op ca. 40% breedte, beeldverhouding 4:5. Mobiel: portret kleiner onder de knoppen. Portret: public/images/glenn-snel.jpg (784 x 980, 4:5), alt 'Portret van Glenn Snel'; standaard in elke Hero, dus op home, /over/, de pijlers en de subpagina's. Zonder foto valt de Hero terug op een placeholder in --bg-soft met hairline-rand |
 | ProofBar | --bg-soft vlak, 3 cijfers groot in goud met label eronder en optioneel een bron als kleine regel in --muted; logostrip in grijs (zonder logobestand: naam in --muted, regular) |
 | SectionHeader | eyebrow, H2, hairline over de contentbreedte |
 | NumberedRow | hairline, goud nummer 01/02/03, titel bold, omschrijving --muted; mobiel gestapeld |
@@ -315,8 +315,9 @@ Open punten:
 - Title: Over Glenn Snel, freelance SEO-specialist | Gladvisor
 - H1: Ik begin bij je business, niet bij je website
 - Opbouw why → hoe → wat: overtuiging; hoe ik werk; achtergrond; wat je van mij mag verwachten
-- Tekst staat klaar in src/content/pages/over.md
-- Schema: Person, Organization
+- Tekst staat klaar in src/content/pages/over.md, inclusief de persoonlijke noot direct boven de afsluitende alinea
+- Hero met portret
+- Schema: Person, Organization; Person heeft image (absolute URL naar het portret)
 
 ### Home
 
